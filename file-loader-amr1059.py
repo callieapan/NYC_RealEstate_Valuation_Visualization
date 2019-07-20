@@ -56,6 +56,9 @@ def csv_to_parquet(spark, input_file, output_file):
                                     f.unix_timestamp('created_date', 'MM/dd/yyyy hh:mm:ss aa'))/ SECONDS_PER_DAY)
   csv = csv.withColumn('year', f.year('created_date'))
 
+  print('{} | Standardizing city names'.format(dt.datetime.now()))
+  csv = csv.withColumn('city', f.regexp_replace(f.lower(f.col('city')), r'\s',''))
+
   print('{} | Converting zipcodes to Integer'.format(dt.datetime.now()))
   csv = csv.withColumn('incident_zip', csv['incident_zip'].cast(t.IntegerType()))
   print('{} | Filtering out invalid zipcodes, retaining valid NYC zipcodes'.format(dt.datetime.now()))
