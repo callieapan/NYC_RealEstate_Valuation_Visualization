@@ -40,7 +40,7 @@ def main(spark ):
     df = df.select(col("Job #").alias("job_num").cast('String'), col("Doc #").alias("doc_num"), col('GIS_LATITUDE').alias('latitude'), col('GIS_LONGITUDE').alias('longitude'),  
          col('TOTAL_CONSTRUCTION_FLOOR_AREA').alias('constuction_area').cast('Double'), col('Job Description').substr(1,10).alias('Job_Descrip'), 
          trim(col('Initial cost')).alias('initial_cost').cast('Double'),
-         trim(col('Total Est. Fee')).alias('total_est_fee').cast('Double'), 
+         #trim(col('Total Est. Fee')).alias('total_est_fee').cast('Double'), 
          col('Job Type').alias('job_type'), col('Fully Permitted').alias('fully_permitted_date').cast('String'), col('Proposed Occupancy').alias('proposed_occup_code').cast('String'),
          col('GIS_NTA_NAME').alias('neighborhood'))
     
