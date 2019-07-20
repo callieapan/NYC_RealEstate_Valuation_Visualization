@@ -38,14 +38,13 @@ def main(spark ):
     trim = udf(trimDollar)
 
     df = df.select(col("Job #").alias("job_num").cast('String'), col("Doc #").alias("doc_num"), col('GIS_LATITUDE').alias('latitude'), col('GIS_LONGITUDE').alias('longitude'),  
-         col('TOTAL_CONSTRUCTION_FLOOR_AREA').alias('constuction_area').cast('Double'), col('Job Description').substr(1,10).alias('Job_Descrip'), 
+         col('TOTAL_CONSTRUCTION_FLOOR_AREA').alias('construction_area').cast('Double'), col('Job Description').alias('Job_Descrip'), 
          trim(col('Initial cost')).alias('initial_cost').cast('Double'),
-         #trim(col('Total Est. Fee')).alias('total_est_fee').cast('Double'), 
          col('Job Type').alias('job_type'), col('Fully Permitted').alias('fully_permitted_date').cast('String'), col('Proposed Occupancy').alias('proposed_occup_code').cast('String'),
          col('GIS_NTA_NAME').alias('neighborhood'))
     
-    print('after schema')
-    print(df.printSchema())
+    #print('after schema')
+    #print(df.printSchema())
 
     df.write.parquet('hdfs:/user/cp2530/DOBraw.parquet', mode="overwrite") 
 
@@ -97,3 +96,4 @@ if __name__ == "__main__":
     #rdd = spark.textFile("hdfs:/user/cp2530/CSCI3033/DOB_raw.csv")
     #df = sqlContext.createDataFrame(rdd, schema)
     #df.write.parquet("hdfs:/user/cp2530/CSCI3033/DOB_raw.parquet")
+    #col('Job Description').substr(1,100).alias('Job_Descrip')
