@@ -26,11 +26,11 @@ def main(spark ):
     df = spark.read.csv(dobf, header = True, inferSchema = True)
     print('initial schema')
     print(df.printSchema())
-    df = df.select(col("Job #").alias("job_num").cast('String'), col("Doc #").alias("doc_num"), col('GIS_LATITUDE').alias('latitude'), col('GIS_LONGITUDE').alias('longitude'),  \
-         col('TOTAL_CONSTRUCTION_FLOOR_AREA').alias('constuction_area').cast('Double'), col('Job Description').substr(1,10).alias('Job_Descrip'), \
-         col('Initial cost').alias('initial_cost').strip('$').cast('Double'),\
-         col('Total Est. Fee').alias('total_est_fee').strip('$').cast('Double'),\ 
-         col('Job Type').alias('job_type'), col('Fully Permitted').alias('fully_permitted_date').cast('String'), col('Proposed Occupancy').alias('proposed_occup_code').cast('String'),\
+    df = df.select(col("Job #").alias("job_num").cast('String'), col("Doc #").alias("doc_num"), col('GIS_LATITUDE').alias('latitude'), col('GIS_LONGITUDE').alias('longitude'),  
+         col('TOTAL_CONSTRUCTION_FLOOR_AREA').alias('constuction_area').cast('Double'), col('Job Description').substr(1,10).alias('Job_Descrip'), 
+         col('Initial cost').alias('initial_cost').strip('$').cast('Double'),
+         col('Total Est. Fee').alias('total_est_fee').strip('$').cast('Double'), 
+         col('Job Type').alias('job_type'), col('Fully Permitted').alias('fully_permitted_date').cast('String'), col('Proposed Occupancy').alias('proposed_occup_code').cast('String'),
          col('GIS_NTA_NAME').alias('neighborhood'))
     
     print('after schema')
