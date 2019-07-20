@@ -1,14 +1,20 @@
 
 
+'''
+module load python/gnu/3.6.5
+module load spark/2.4.0
 
-#module load python/gnu/3.6.5
-#module load spark/2.4.0
 
+alias spark-submit='PYSPARK_PYTHON=$(which python) spark-submit'
+
+spark-submit readfile_CP.py
+'''
 
  # We need sys to get the command line arguments
 import sys
 import pandas as pd
 from pyspark.sql import SparkSession
+
 from pyspark.sql import Row
 import numpy as np
 from pyspark.sql.functions import collect_list
@@ -16,20 +22,25 @@ from pyspark.sql.functions import struct
 from pyspark.sql.functions import col
 from pyspark.sql import SQLContext #think this is outdated
 from pyspark.sql.types import *
+from pyspark.sql.functions import udf
 
 
-
+def trimDollar(astring):
+    return astring.strip("$")
 
 def main(spark ):
 
     dobf = 'hdfs:/user/cp2530/DOB_raw'
     df = spark.read.csv(dobf, header = True, inferSchema = True)
-    print('initial schema')
-    print(df.printSchema())
+    #print('initial schema')
+    #print(df.printSchema())
+
+    trim = udf(trimDollar)
+
     df = df.select(col("Job #").alias("job_num").cast('String'), col("Doc #").alias("doc_num"), col('GIS_LATITUDE').alias('latitude'), col('GIS_LONGITUDE').alias('longitude'),  
          col('TOTAL_CONSTRUCTION_FLOOR_AREA').alias('constuction_area').cast('Double'), col('Job Description').substr(1,10).alias('Job_Descrip'), 
-         col('Initial cost').alias('initial_cost').strip('$').cast('Double'),
-         col('Total Est. Fee').alias('total_est_fee').strip('$').cast('Double'), 
+         trim(col('Initial cost')).alias('initial_cost').cast('Double'),
+         trim(col('Total Est. Fee')).alias('total_est_fee').cast('Double'), 
          col('Job Type').alias('job_type'), col('Fully Permitted').alias('fully_permitted_date').cast('String'), col('Proposed Occupancy').alias('proposed_occup_code').cast('String'),
          col('GIS_NTA_NAME').alias('neighborhood'))
     
