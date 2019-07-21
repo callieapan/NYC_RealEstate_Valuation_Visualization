@@ -63,7 +63,7 @@ def main(spark):
     
     #create column with key words
     findKeyWords = F.udf(convertKeyWords)
-    df = df.withColumn('job_descip_keyword', findKeyWords(F.col('job_descip')))
+    df = df.withColumn('job_descrip_keyword', findKeyWords(F.col('job_descrip')))
 
     print(df.show(5))
 
