@@ -3,7 +3,7 @@
 module load python/gnu/3.6.5
 module load spark/2.4.0
 alias spark-submit='PYSPARK_PYTHON=$(which python) spark-submit'
-spark-submit readfile_CP.py
+spark-submit cleanfile_CP.py
 '''
 
  # We need sys to get the command line arguments
@@ -18,14 +18,6 @@ import datetime
  
  
  
- 
- #data clearning
-    #remove rows where initial_cost is 999999999 or of a certain value
-    #dfdatefilter.sort('permitted_date', ascending = False).show(3)
-
-    #remove rows where permitted_date is > datetime.date(2019,7,31)
-   
-    #create DateCol
 def convertKeyWords(astring):
     dicKeys = {}
     dicKeys["MODIFICATION"] = "modify"
@@ -59,7 +51,7 @@ def convertKeyWords(astring):
     result = ",".join(alist)
     return result
 
-def main(spark ):
+def main(spark):
     df = spark.read.parquet("hdfs:/user/cp2530/DOBraw.parquet")
 
     #remove dates before 2009-12-31 and date after 2019-07-31
@@ -80,7 +72,7 @@ def main(spark ):
 
 
 
-    if __name__ == "__main__":
+if __name__ == "__main__":
 
     # Create the spark session object
     spark = SparkSession.builder.appName('project').getOrCreate()
