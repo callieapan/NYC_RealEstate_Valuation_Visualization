@@ -58,7 +58,7 @@ def main(spark ):
                      F.min(F.col('latitude')), F.max(F.col('longitude')),
                      F.min(F.col('job descrip_len')), F.max(F.col('job_descrip_len')),
                      F.min(F.col('initial_cost')), F.max(F.col('initial_cost')),
-                     F.min((F.col('permitted_date'))), F.max(F.col('permitted_date')))
+                     F.min((F.col('permitted_date')), F.max(F.col('permitted_date')))
 
     print(dftemp.show())
 
