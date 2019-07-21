@@ -66,9 +66,9 @@ def main(spark ):
 
     print('check the distinct types of Field job_type, proposed_occup_code, and neighborhood ')
 
-    print(df.groupby("job_type").agg(count('*')).show())
-    print(df.groupby("proposed_occup_code").agg(count('*')).show())
-    print(df.groupby("neighborhood").agg(count('*')).show())
+    print(df.groupby("job_type").agg(F.count('*')).show())
+    print(df.groupby("proposed_occup_code").agg(F.count('*')).show())
+    print(df.groupby("neighborhood").agg(F.count('*')).show())
 
 
     #df2 = df.withColumn('job_num_len', F.length('job_num')).withColumn(....)
