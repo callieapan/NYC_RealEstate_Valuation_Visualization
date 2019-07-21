@@ -48,7 +48,7 @@ def main(spark ):
          F.col('Proposed Occupancy').alias('proposed_occup_code').cast('String'),
          F.col('GIS_NTA_NAME').alias('neighborhood'))
     
-    print（'data frame count: {}'.format(df.count()))
+    print('data frame count: {}'.format(df.count()))
     print("schema")
     print(df.printSchema())
     
