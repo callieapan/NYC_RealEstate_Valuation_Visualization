@@ -54,12 +54,13 @@ def main(spark ):
     
     df2 = df.withColumn('job_num_len', F.length('job_num')).withColumn('job_descrip_len', F.length('job_descrip'))
     print(df2.show(2))
+    
     print('check max and min values')
     dftemp = df2.agg(F.min(F.col('doc_num')), F.max(F.col('doc_num')), 
                      F.min(F.col('latitude')), F.max(F.col('longitude')),
-                     F.min(F.col('job descrip_len')), F.max(F.col('job_descrip_len')),
-                     F.min(F.col('initial_cost')), F.max(F.col('initial_cost')))
-                     #F.min((F.col('permitted_date'))), F.max((F.col('permitted_date'))))
+                     F.min(F.col('job_descrip_len')), F.max(F.col('job_descrip_len')),
+                     F.min(F.col('initial_cost')), F.max(F.col('initial_cost')),
+                     F.min(F.col('permitted_date')), F.max(F.col('permitted_date')))
 
     print(dftemp.show())
 
