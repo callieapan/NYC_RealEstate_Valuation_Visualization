@@ -21,8 +21,8 @@ import datetime
 def convertKeyWords(astring):
     dicKeys = {}
     dicKeys["MODIFICATION"] = "modify"
-    dickeys["MODIFY"] = "modify"
-    dickeys["MODIFYING"] = "modify"
+    dicKeys["MODIFY"] = "modify"
+    dicKeys["MODIFYING"] = "modify"
     dicKeys["INSTALLATION"] = 'install'
     dicKeys["INSTALL"] = 'install'
     dicKeys["INSTALLING"] = 'install'
