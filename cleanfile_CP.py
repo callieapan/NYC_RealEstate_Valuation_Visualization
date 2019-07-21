@@ -58,7 +58,7 @@ def main(spark):
     df = df.filter(df.permitted_date<datetime.date(2017,7,31)).filter(df.permitted_date>datetime.date(2009,12,31))
 
     #save the coordinate pairs to csv for zipcode mapping
-    df2coord = df2.groupby('longitude', 'latitude').agg(F.count("*"))
+    df2coord = df.groupby('longitude', 'latitude').agg(F.count("*"))
     df2coord.write.csv('hdfs:/user/cp2530/DOBdf2coord')
     
     #create column with key words
