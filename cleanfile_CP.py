@@ -59,7 +59,7 @@ def main(spark):
 
     #save the coordinate pairs to csv for zipcode mapping
     df2coord = df.groupby('longitude', 'latitude').agg(F.count("*"))
-    df2coord.write.csv('hdfs:/user/cp2530/DOBdf2coord')
+    df2coord.write.csv('hdfs:/user/cp2530/DOBdf2coord', mode='overwrite')
     
     #create column with key words
     findKeyWords = F.udf(convertKeyWords)
