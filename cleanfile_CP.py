@@ -65,7 +65,7 @@ def main(spark):
     print(df.show(2))
     print('min and max length of ob_descrip_keyword')
     print(df.agg(F.max(F.length('job_descrip_keyword'))).collect())
-    print(df.agg(F.min(F.length('job_descrip_keyword'))).collect()))
+    print(df.agg(F.min(F.length('job_descrip_keyword'))).collect())
 
     df.write.parquet('hdfs:/user/cp2530/DOBclean.parquet', mode="overwrite") 
     print('finished saving clean parquet') 
