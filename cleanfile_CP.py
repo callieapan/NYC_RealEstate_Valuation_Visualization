@@ -25,25 +25,21 @@ def convertKeyWords(astring):
     dicKeys = {}
     dicKeys["MODIFICATION"] = "modify"
     dicKeys["MODIFY"] = "modify"
-    dicKeys["MODIFYING"] = "modify"
-    dicKeys["INSTALLATION"] = 'install'
     dicKeys["INSTALL"] = 'install'
-    dicKeys["INSTALLING"] = 'install'
     dicKeys["RENVOATION"] = 'renovate'
     dicKeys["RENVOATE"] = 'renovate'
     dicKeys["RENVOATING"] = 'renovate'
     dicKeys["CONVERSION"] = "convert"
     dicKeys["CONVERT"] = "convert"
-    dicKeys["CONVERTING"] = "convert"
     dicKeys["RESTORATION"] = "restore"
     dicKeys["RESTORE"] = "restore"
     dicKeys["RESTORING"] = "restore"
     dicKeys["REMOVE"] = "remove"
     dicKeys["REMOVAL"] = "remove"
-    dicKeys["REMING"] = "remove"
+    dicKeys["REMOVING"] = "remove"
     dicKeys["NEW"] = 'new'
     dicKeys["DEMOLITION"] = 'demolition'
-    dicKeys["NO CHANGE TO USE"] ='no change to use'
+    dicKeys["NO CHANGE"] ='no_change'
 
     alist = []
     for word in dicKeys.keys():
@@ -63,38 +59,13 @@ def main(spark):
     df2coord = df.groupby('longitude', 'latitude').agg(F.count("*"))
     df2coord.write.csv('hdfs:/user/cp2530/DOBdf2coord', mode='overwrite')
     
-    #create column with key words
-
-    # dicKeys = {}
-    # dicKeys["MODIFICATION"] = "modify"
-    # dicKeys["MODIFY"] = "modify"
-    # dicKeys["MODIFYING"] = "modify"
-    # dicKeys["INSTALLATION"] = 'install'
-    # dicKeys["INSTALL"] = 'install'
-    # dicKeys["INSTALLING"] = 'install'
-    # dicKeys["RENVOATION"] = 'renovate'
-    # dicKeys["RENVOATE"] = 'renovate'
-    # dicKeys["RENVOATING"] = 'renovate'
-    # dicKeys["CONVERSION"] = "convert"
-    # dicKeys["CONVERT"] = "convert"
-    # dicKeys["CONVERTING"] = "convert"
-    # dicKeys["RESTORATION"] = "restore"
-    # dicKeys["RESTORE"] = "restore"
-    # dicKeys["RESTORING"] = "restore"
-    # dicKeys["REMOVE"] = "remove"
-    # dicKeys["REMOVAL"] = "remove"
-    # dicKeys["REMING"] = "remove"
-    # dicKeys["NEW"] = 'new'
-    # dicKeys["DEMOLITION"] = 'demolition'
-    # dicKeys["NO CHANGE TO USE"] ='no change to use'
-
-
-
-
     findKeyWords = F.udf(convertKeyWords)
     df = df.withColumn('job_descrip_keyword', findKeyWords(F.col('job_descrip')))
 
-    print(df.show(20))
+    print(df.show(2))
+    print('min and max length of ob_descrip_keyword')
+    print(df.agg(F.max(F.length('job_descrip_keyword'))).collect())
+    print(df.agg(F.min(F.length('job_descrip_keyword'))).collect()))
 
     df.write.parquet('hdfs:/user/cp2530/DOBclean.parquet', mode="overwrite") 
     print('finished saving clean parquet') 
