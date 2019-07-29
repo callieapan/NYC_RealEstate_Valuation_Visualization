@@ -14,6 +14,7 @@ from pyspark.sql import Row
 import numpy as np
 from pyspark.sql.types import *
 import datetime
+from functools import *
 
 
 def makeaggs(df2):
