@@ -100,7 +100,7 @@ def main(spark):
     print(dfkeyword.columns)
     print(dfkeyword.head(2))
 
-    dfkeyword.to_csv("hdfs:/user/cp2530/dfkeyword.csv", mode="overwrite")
+    dfkeyword.to_csv("hdfs:/user/cp2530/dfkeyword.csv")
     print('finish write dfkeyword.csv')
 
 if __name__ == "__main__":
