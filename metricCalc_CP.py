@@ -95,11 +95,11 @@ def main(spark):
         tempPanda.columns = newcol
         dfList.append(tempPanda)
         
-   dfkeyword = reduce(lambda x, y: pd.merge(x, y, on = 'zip1'), dfList) 
-   print(dfkeyword.columns)
-   print(dfkeyword.head(2))
+    dfkeyword = reduce(lambda x, y: pd.merge(x, y, on = 'zip1'), dfList) 
+    print(dfkeyword.columns)
+    print(dfkeyword.head(2))
 
-   dfkeyword.to_csv("hdfs:/user/cp2530/dfkeyword.csv", mode="overwrite")
+    dfkeyword.to_csv("hdfs:/user/cp2530/dfkeyword.csv", mode="overwrite")
     #'install'
 
     #'renovate'
