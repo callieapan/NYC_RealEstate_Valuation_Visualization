@@ -27,7 +27,7 @@ def main(spark):
     #df.groupBy("A", "B").pivot("C", Seq("small", "large")).sum("D")
     #Seq(2010,2011, 2012,2013,2014,2015,2016,2017,2018,2019)
     df3=df2.groupby("zip1", "job_type" ).pivot("year").agg(F.countDistinct('job_num').alias('job count'))
-    df3 = df3.withColumn("delta 2011", F.col('2011') -  F.col('2010'))
+    df3 = df3.withColumn("delta 2011", F.col('2011') -  F.col('2010'))\
              .withColumn("delta 2012", F.col('2012') -  F.col('2011'))\
              .withColumn("delta 2013", F.col('2013') -  F.col('2012'))\
              .withColumn("delta 2014", F.col('2014') -  F.col('2013'))\
