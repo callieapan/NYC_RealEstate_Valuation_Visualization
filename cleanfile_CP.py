@@ -53,7 +53,7 @@ def main(spark):
     df = spark.read.parquet("hdfs:/user/cp2530/DOBraw.parquet")
 
     #remove dates before 2009-12-31 and date after 2019-07-31
-    df = df.filter(df.permitted_date<datetime.date(2017,7,31)).filter(df.permitted_date>datetime.date(2009,12,31))
+    df = df.filter(df.permitted_date<datetime.date(2019,7,31)).filter(df.permitted_date>datetime.date(2009,12,31))
 
     #save the coordinate pairs to csv for zipcode mapping
     df2coord = df.groupby('longitude', 'latitude').agg(F.count("*"))
