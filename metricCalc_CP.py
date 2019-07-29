@@ -100,16 +100,12 @@ def main(spark):
     print(dfkeyword.head(2))
 
     dfkeyword.to_csv("hdfs:/user/cp2530/dfkeyword.csv", mode="overwrite")
-    #'install'
+    print('finish write dfkeyword.csv')
 
-    #'renovate'
-    
-    #"convert"
+if __name__ == "__main__":
 
-    #"restore"
-    #'new'
-    #"remove"
-    #'demolition'
-    #'no_change'
+    # Create the spark session object
+    spark = SparkSession.builder.appName('project').getOrCreate()
 
-    #merge it together
+    # Call our main routine
+    main(spark)
