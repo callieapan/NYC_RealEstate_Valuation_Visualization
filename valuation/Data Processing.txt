@@ -1,0 +1,148 @@
+module load python/gnu/3.6.5
+module load spark/2.4.0
+pyspark
+data=spark.read.load("cleaned_data_2.csv", format="csv", inferschema="true", header="true")
+data.createOrReplaceTempView('valdata')
+
+trend10_11=spark.sql('SELECT CASE WHEN yr_2010.BBLE is not null THEN yr_2010.BBLE ELSE yr_2011.BBLE END BBLE, \
+yr_2010.FULLVAL FULLVAL_2010, yr_2011.FULLVAL FULLVAL_2011 FROM \
+(SELECT BBLE, FULLVAL from valdata WHERE YEAR="2010/11") yr_2010 FULL OUTER JOIN \
+(SELECT BBLE, FULLVAL from valdata WHERE YEAR="2011/12") yr_2011 ON yr_2010.BBLE=yr_2011.BBLE')
+trend10_11.createOrReplaceTempView('trend10_11')
+
+trend12_13=spark.sql('SELECT CASE WHEN yr_2012.BBLE is not null THEN yr_2012.BBLE ELSE yr_2013.BBLE END BBLE, \
+yr_2012.FULLVAL FULLVAL_2012, yr_2013.FULLVAL FULLVAL_2013 FROM \
+(SELECT BBLE, FULLVAL from valdata WHERE YEAR="2012/13") yr_2012 FULL OUTER JOIN \
+(SELECT BBLE, FULLVAL from valdata WHERE YEAR="2013/14") yr_2013 ON yr_2012.BBLE=yr_2013.BBLE')
+trend12_13.createOrReplaceTempView('trend12_13')
+
+trend14_15=spark.sql('SELECT CASE WHEN yr_2014.BBLE is not null THEN yr_2014.BBLE ELSE yr_2015.BBLE END BBLE, \
+yr_2014.FULLVAL FULLVAL_2014, yr_2015.FULLVAL FULLVAL_2015 FROM \
+(SELECT BBLE, FULLVAL from valdata WHERE YEAR="2014/15") yr_2014 FULL OUTER JOIN \
+(SELECT BBLE, FULLVAL from valdata WHERE YEAR="2015/16") yr_2015 ON yr_2014.BBLE=yr_2015.BBLE')
+trend14_15.createOrReplaceTempView('trend14_15')
+
+trend16_17=spark.sql('SELECT CASE WHEN yr_2016.BBLE is not null THEN yr_2016.BBLE ELSE yr_2017.BBLE END BBLE, \
+yr_2016.FULLVAL FULLVAL_2016, yr_2017.FULLVAL FULLVAL_2017 FROM \
+(SELECT BBLE, FULLVAL from valdata WHERE YEAR="2016/17") yr_2016 FULL OUTER JOIN \
+(SELECT BBLE, FULLVAL from valdata WHERE YEAR="2017/18") yr_2017 ON yr_2016.BBLE=yr_2017.BBLE')
+trend16_17.createOrReplaceTempView('trend16_17')
+
+trend10_11_12_13=spark.sql('SELECT CASE WHEN trend10_11.BBLE is not null THEN trend10_11.BBLE ELSE trend12_13.BBLE END BBLE, \
+FULLVAL_2010, FULLVAL_2011, FULLVAL_2012, FULLVAL_2013 \
+FROM trend10_11 FULL OUTER JOIN trend12_13 ON trend10_11.BBLE=trend12_13.BBLE')
+trend10_11_12_13.createOrReplaceTempView('trend10_11_12_13')
+
+trend14_15_16_17=spark.sql('SELECT CASE WHEN trend14_15.BBLE is not null THEN trend14_15.BBLE ELSE trend16_17.BBLE END BBLE, \
+FULLVAL_2014, FULLVAL_2015, FULLVAL_2016, FULLVAL_2017 \
+FROM trend14_15 FULL OUTER JOIN trend16_17 ON trend14_15.BBLE=trend16_17.BBLE')
+trend14_15_16_17.createOrReplaceTempView('trend14_15_16_17')
+
+trend10_17=spark.sql('SELECT CASE WHEN trend10_11_12_13.BBLE is not null THEN trend10_11_12_13.BBLE ELSE trend14_15_16_17.BBLE END BBLE, \
+FULLVAL_2010, FULLVAL_2011, FULLVAL_2012, FULLVAL_2013, FULLVAL_2014, FULLVAL_2015, FULLVAL_2016, FULLVAL_2017 \
+FROM trend10_11_12_13 FULL OUTER JOIN trend14_15_16_17 ON trend10_11_12_13.BBLE=trend14_15_16_17.BBLE')
+trend10_17.createOrReplaceTempView('trend10_17')
+
+merged_yrs=spark.sql('SELECT CASE WHEN trend10_17.BBLE is not null THEN trend10_17.BBLE ELSE yr_2018.BBLE END BBLE, \
+FULLVAL_2010, FULLVAL_2011, FULLVAL_2012, FULLVAL_2013, FULLVAL_2014, FULLVAL_2015, FULLVAL_2016, FULLVAL_2017, yr_2018.FULLVAL FULLVAL_2018 \
+FROM trend10_17 FULL OUTER JOIN (SELECT BBLE, FULLVAL from valdata WHERE YEAR="2018/19") yr_2018 \
+ON trend10_17.BBLE=yr_2018.BBLE')
+merged_yrs.createOrReplaceTempView('merged_yrs')
+
+growth=spark.sql('SELECT BBLE, FULLVAL_2010, FULLVAL_2011, FULLVAL_2012, FULLVAL_2013, FULLVAL_2014, FULLVAL_2015, FULLVAL_2016, FULLVAL_2017, FULLVAL_2018, \
+CASE WHEN (FULLVAL_2010 is not null AND FULLVAL_2011 is not null) THEN ((FULLVAL_2011-FULLVAl_2010)/FULLVAL_2010) ELSE null END 10_11_growth, \
+CASE WHEN (FULLVAL_2011 is not null AND FULLVAL_2012 is not null) THEN ((FULLVAL_2012-FULLVAl_2011)/FULLVAL_2011) ELSE null END 11_12_growth, \
+CASE WHEN (FULLVAL_2012 is not null AND FULLVAL_2013 is not null) THEN ((FULLVAL_2013-FULLVAl_2012)/FULLVAL_2012) ELSE null END 12_13_growth, \
+CASE WHEN (FULLVAL_2013 is not null AND FULLVAL_2014 is not null) THEN ((FULLVAL_2014-FULLVAl_2013)/FULLVAL_2013) ELSE null END 13_14_growth, \
+CASE WHEN (FULLVAL_2014 is not null AND FULLVAL_2015 is not null) THEN ((FULLVAL_2015-FULLVAl_2014)/FULLVAL_2014) ELSE null END 14_15_growth, \
+CASE WHEN (FULLVAL_2015 is not null AND FULLVAL_2016 is not null) THEN ((FULLVAL_2016-FULLVAl_2015)/FULLVAL_2015) ELSE null END 15_16_growth, \
+CASE WHEN (FULLVAL_2016 is not null AND FULLVAL_2017 is not null) THEN ((FULLVAL_2017-FULLVAl_2016)/FULLVAL_2016) ELSE null END 16_17_growth, \
+CASE WHEN (FULLVAL_2017 is not null AND FULLVAL_2018 is not null) THEN ((FULLVAL_2018-FULLVAl_2017)/FULLVAL_2017) ELSE null END 17_18_growth, \
+CASE WHEN (FULLVAL_2010 is not null AND FULLVAL_2011 is not null) THEN 1 ELSE 0 END 10_11_countnotnull, \
+CASE WHEN (FULLVAL_2011 is not null AND FULLVAL_2012 is not null) THEN 1 ELSE 0 END 11_12_countnotnull, \
+CASE WHEN (FULLVAL_2012 is not null AND FULLVAL_2013 is not null) THEN 1 ELSE 0 END 12_13_countnotnull, \
+CASE WHEN (FULLVAL_2013 is not null AND FULLVAL_2014 is not null) THEN 1 ELSE 0 END 13_14_countnotnull, \
+CASE WHEN (FULLVAL_2014 is not null AND FULLVAL_2015 is not null) THEN 1 ELSE 0 END 14_15_countnotnull, \
+CASE WHEN (FULLVAL_2015 is not null AND FULLVAL_2016 is not null) THEN 1 ELSE 0 END 15_16_countnotnull, \
+CASE WHEN (FULLVAL_2016 is not null AND FULLVAL_2017 is not null) THEN 1 ELSE 0 END 16_17_countnotnull, \
+CASE WHEN (FULLVAL_2017 is not null AND FULLVAL_2018 is not null) THEN 1 ELSE 0 END 17_18_countnotnull \
+FROM merged_yrs')
+growth.createOrReplaceTempView('growth')
+
+avg_growth=spark.sql('select BBLE, FULLVAL_2010, FULLVAL_2011, FULLVAL_2012, FULLVAL_2013, FULLVAL_2014, FULLVAL_2015, FULLVAL_2016, \
+FULLVAL_2017, FULLVAL_2018, \
+(IFNULL(10_11_growth,0)+IFNULL(11_12_growth,0)+IFNULL(12_13_growth,0)+IFNULL(13_14_growth,0)+IFNULL(14_15_growth,0)+IFNULL(15_16_growth,0)+\
+IFNULL(16_17_growth,0)+IFNULL(17_18_growth,0))/(10_11_countnotnull+11_12_countnotnull\
++12_13_countnotnull+13_14_countnotnull+14_15_countnotnull+15_16_countnotnull+16_17_countnotnull+17_18_countnotnull) growth_avg FROM growth')
+avg_growth.createOrReplaceTempView('growth_rate')
+
+bble_zip=spark.sql('SELECT BBLE, POSTCODE, BORO, CASE WHEN BORO=1 THEN "Manhattan" \
+WHEN BORO=2 THEN "Bronx" \
+WHEN BORO=3 THEN "Brooklyn" \
+WHEN BORO=4 THEN "Queens" \
+WHEN BORO=5 THEN "Staten Island" END boro_name, \
+CASE WHEN YEAR="2010/11" THEN 2010 \
+WHEN YEAR="2011/12" THEN 2011 \
+WHEN YEAR="2012/13" THEN 2012 \
+WHEN YEAR="2013/14" THEN 2013 \
+WHEN YEAR="2014/15" THEN 2014 \
+WHEN YEAR="2015/16" THEN 2015 \
+WHEN YEAR="2016/17" THEN 2016 \
+WHEN YEAR="2017/18" THEN 2017 \
+WHEN YEAR="2018/19" THEN 2018 END year_int FROM valdata')
+bble_zip.createOrReplaceTempView('bble_zip')
+
+zip_unique=spark.sql('SELECT bble_zip.BBLE, bble_zip.POSTCODE, bble_zip.BORO, bble_zip.boro_name \
+FROM (SELECT BBLE, max(year_int) max_year FROM bble_zip GROUP BY BBLE) x \
+LEFT JOIN bble_zip ON x.BBLE=bble_zip.BBLE AND bble_zip.year_int=x.max_year')
+zip_unique.createOrReplaceTempView('zip_unique')
+
+growth_wzip=spark.sql('select growth_rate.BBLE, zip_unique.BORO, zip_unique.boro_name, zip_unique.POSTCODE, growth_rate.growth_avg \
+FROM growth_rate JOIN zip_unique ON growth_rate.BBLE=zip_unique.BBLE')
+growth_wzip.createOrReplaceTempView('growth_wzip')
+
+growth_wzip.write.csv("bble_growth.csv",header="true")
+
+cleaned_data=spark.read.load("bble_growth.csv", format="csv", inferschema="true", header="true")
+cleaned_data.createOrReplaceTempView('final_growth')
+
+spark.sql('SELECT boro, boro_name, AVG(growth_avg) avg_growth FROM final_growth WHERE growth_avg<15 GROUP BY boro, boro_name ORDER BY avg_growth DESC').show()
++----+-------------+--------------------+                                       
+|boro|    boro_name|          avg_growth|
++----+-------------+--------------------+
+|   3|     Brooklyn| 0.09172618816721095|
+|   1|    Manhattan| 0.08367464728639183|
+|   4|       Queens| 0.06268251498284837|
+|   2|        Bronx|0.053923869445725685|
+|   5|Staten Island| 0.04721909631250475|
++----+-------------+--------------------+
+
+spark.sql('SELECT postcode, avg(growth_avg) avg_growth FROM final_growth WHERE growth_avg<15 GROUP BY postcode ORDER BY avg_growth DESC').show()
++--------+-------------------+                                                  
+|postcode|         avg_growth|
++--------+-------------------+
+|   11249| 0.2853149888541515|
+|   11354| 0.2632505401121272|
+|   11101| 0.2570330221861353|
+|   10039|0.25148333130134204|
+|   11238| 0.1827217635682081|
+|   11201|0.15431844605445047|
+|   11205|0.14997851573883472|
+|   11222|0.14970528361140104|
+|   11239|0.14700196120512302|
+|   11216| 0.1397543518607684|
+|   10037|0.13804073112783705|
+|   10011|0.13646951055952744|
+|   10454| 0.1351298747998021|
+|   10010|0.13407540466631648|
+|   11231|0.13362300618026776|
+|   11211|0.13301088449380008|
+|   11206|  0.132991640320925|
+|   10036|0.13120443496240217|
+|   10451|0.12831868445152272|
+|   10032| 0.1261960270174591|
++--------+-------------------+
+
+final_data=spark.sql('SELECT postcode, avg(growth_avg) avg_growth FROM final_growth WHERE growth_avg<15 GROUP BY postcode ORDER BY avg_growth DESC')
+final_data.write.csv("valuation_growth_byzip.csv",header="true")
+hfs -getfacl hdfs:/user/bm106/pub/artist_term_large.csv | hfs -setfacl hdfs:/user/ctd299/valuation_growth_byzip.csv

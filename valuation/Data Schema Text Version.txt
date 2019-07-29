@@ -1,0 +1,15 @@
+Column Name|Description|Data Type
+BBLE|Boro, Block, Lot  and Easement code.  Key column.|String
+BORO|NYC Borough,  1 = Manhattan, 2 = Bronx , 3 = Brooklyn, 4 = Queens, 5 = Staten Island|Integer
+BLOCK|block number|Integer
+LOT|lot number|Integer
+TAXCLASS|"Tax Class 1 = 1 -  3 Unit Residence, 2 = Apartments, 2A =  4, 5, or 6 Units,3 = Utilities,4 = All Others"|Integer
+LTFRONT|Lot Width|Float
+LTDEPTH|Lot Depth|Float
+STORIES|Number of Stories in Building|Float
+FULLVAL|Market Value, the worth of your property determined by the Department of Finance based on your property's tax class |Float
+STADDR|Street Address|String
+POSTCODE|Zip Code|Integer
+BLDFRONT|Building Width|Float
+BLDDEPTH|Building Depth|Float
+YEAR|Assessment Year|String
