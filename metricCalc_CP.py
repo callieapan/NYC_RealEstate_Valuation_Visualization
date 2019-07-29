@@ -2,7 +2,7 @@
 module load python/gnu/3.6.5
 module load spark/2.4.0
 alias spark-submit='PYSPARK_PYTHON=$(which python) spark-submit'
-spark-submit mergzip_CP.py
+spark-submit metricCalc_CP.py
 '''
 
  # We need sys to get the command line arguments
@@ -28,13 +28,13 @@ def main(spark):
     #Seq(2010,2011, 2012,2013,2014,2015,2016,2017,2018,2019)
     df3=df2.groupby("zip1", "job_type" ).pivot("year").agg(F.countDistinct('job_num').alias('job count'))
     df3 = df3.withColumn("delta 2011", F.col('2011') -  F.col('2010'))
-             .withColumn("delta 2012", F.col('2012') -  F.col('2011'))
-             .withColumn("delta 2013", F.col('2013') -  F.col('2012'))
-             .withColumn("delta 2014", F.col('2014') -  F.col('2013'))
-             .withColumn("delta 2015", F.col('2015') -  F.col('2014'))
-             .withColumn("delta 2016", F.col('2016') -  F.col('2015'))
-             .withColumn("delta 2017", F.col('2017') -  F.col('2016'))
-             .withColumn("delta 2018", F.col('2018') -  F.col('2017'))
+             .withColumn("delta 2012", F.col('2012') -  F.col('2011'))\
+             .withColumn("delta 2013", F.col('2013') -  F.col('2012'))\
+             .withColumn("delta 2014", F.col('2014') -  F.col('2013'))\
+             .withColumn("delta 2015", F.col('2015') -  F.col('2014'))\
+             .withColumn("delta 2016", F.col('2016') -  F.col('2015'))\
+             .withColumn("delta 2017", F.col('2017') -  F.col('2016'))\
+             .withColumn("delta 2018", F.col('2018') -  F.col('2017'))\
              .withColumn("delta 2019", F.col('2019') -  F.col('2018'))
 
     df3.write.csv("jobcountbyzip_job_type.csv", mode="overwrite")
