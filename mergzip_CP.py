@@ -38,7 +38,7 @@ def main(spark):
     print(df2.filter(df2['zip1'].isNull()).count())
     print(df2.show(2))
 
-    df.write.parquet('hdfs:/user/cp2530/DOBcleanzip.parquet', mode="overwrite") 
+    df2.write.parquet('hdfs:/user/cp2530/DOBcleanzip.parquet', mode="overwrite") 
     print('finished saving cleanzip parquet') 
 
 if __name__ == "__main__":
