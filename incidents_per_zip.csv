@@ -1,0 +1,1335 @@
+rnum,year,incident_zip,complaint_type,incident_count
+5,2014,10001,Noise,1288
+1,2016,10001,Homeless Person Assistance,2768
+2,2016,10001,Noise,1504
+4,2017,10001,Noise,1314
+3,2018,10001,Noise,1478
+5,2014,10002,Noise - Residential,1956
+rnum,year,incident_zip,complaint_type,incident_count
+2,2015,10002,Noise - Residential,2549
+3,2016,10002,Noise - Residential,2381
+1,2017,10002,Noise - Residential,2792
+4,2018,10002,Noise - Residential,2132
+4,2013,10003,Broken Muni Meter,1463
+1,2016,10003,Homeless Person Assistance,3572
+5,2016,10003,Noise - Residential,1450
+rnum,year,incident_zip,complaint_type,incident_count
+3,2017,10003,Noise,1473
+2,2018,10003,Noise,1520
+3,2016,10004,Homeless Person Assistance,271
+4,2017,10004,Noise,271
+5,2017,10004,Vending,268
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,10004,Vending,307
+2,2018,10004,Noise,285
+4,2013,10005,Noise,329
+5,2014,10005,Noise,325
+2,2016,10005,Noise - Street/Sidewalk,357
+3,2016,10005,Noise,329
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,10005,Noise,369
+3,2014,10006,Noise,270
+5,2015,10006,Noise,253
+2,2016,10006,Noise,275
+1,2017,10006,Noise,357
+rnum,year,incident_zip,complaint_type,incident_count
+4,2018,10006,Noise,265
+1,2019,10007,Noise - Residential,5784
+2,2019,10007,Illegal Parking,4643
+3,2019,10007,Noise - Street/Sidewalk,4419
+4,2019,10007,Blocked Driveway,2810
+5,2019,10007,Unsanitary Condition,2493
+rnum,year,incident_zip,complaint_type,incident_count
+5,2014,10009,Noise - Residential,2125
+4,2015,10009,Noise - Residential,2328
+3,2016,10009,Noise - Residential,2385
+1,2017,10009,Noise - Residential,2582
+2,2018,10009,Noise - Residential,2518
+rnum,year,incident_zip,complaint_type,incident_count
+1,2016,10010,Noise,944
+2,2016,10010,Homeless Person Assistance,850
+4,2017,10010,Noise - Residential,805
+5,2017,10010,Noise,760
+3,2018,10010,Noise,816
+3,2015,10011,Noise,1297
+rnum,year,incident_zip,complaint_type,incident_count
+1,2016,10011,Homeless Person Assistance,2180
+5,2016,10011,Noise,1268
+4,2017,10011,Noise,1286
+2,2018,10011,Noise,1458
+2,2015,10012,Noise - Commercial,869
+1,2016,10012,Homeless Person Assistance,1332
+4,2016,10012,Noise,803
+rnum,year,incident_zip,complaint_type,incident_count
+3,2017,10012,Noise - Commercial,814
+5,2017,10012,Noise,799
+3,2010,10013,Street Condition,1194
+2,2013,10013,Broken Muni Meter,1258
+rnum,year,incident_zip,complaint_type,incident_count
+4,2014,10013,Noise,1126
+5,2014,10013,Broken Muni Meter,1074
+1,2017,10013,Noise - Vehicle,1501
+1,2010,10014,HEATING,952
+4,2011,10014,HEATING,897
+3,2015,10014,HEAT/HOT WATER,901
+rnum,year,incident_zip,complaint_type,incident_count
+5,2016,10014,Noise - Residential,894
+2,2017,10014,Noise,907
+1,2014,10015,Consumer Complaint,1
+3,2014,10016,Noise,1809
+2,2016,10016,Homeless Person Assistance,1840
+4,2016,10016,Noise,1759
+rnum,year,incident_zip,complaint_type,incident_count
+1,2017,10016,Noise,2117
+5,2018,10016,Noise,1551
+5,2010,10017,Taxi Complaint,671
+2,2011,10017,Broken Muni Meter,1026
+1,2016,10017,Homeless Person Assistance,1446
+rnum,year,incident_zip,complaint_type,incident_count
+3,2017,10017,Homeless Person Assistance,817
+4,2017,10017,Noise,716
+2,2013,10018,Broken Muni Meter,632
+1,2016,10018,Homeless Person Assistance,1547
+5,2016,10018,Noise,592
+3,2017,10018,Homeless Person Assistance,618
+4,2017,10018,Noise,596
+rnum,year,incident_zip,complaint_type,incident_count
+1,2016,10019,Homeless Person Assistance,2438
+3,2016,10019,Noise,1490
+4,2016,10019,HEAT/HOT WATER,1476
+5,2017,10019,Noise,1467
+2,2018,10019,Noise,1818
+rnum,year,incident_zip,complaint_type,incident_count
+3,2010,10020,Broken Muni Meter,95
+5,2012,10020,Broken Muni Meter,78
+1,2013,10020,Broken Muni Meter,111
+2,2016,10020,Vending,108
+4,2017,10020,Vending,79
+rnum,year,incident_zip,complaint_type,incident_count
+3,2010,10021,Street Condition,656
+4,2014,10021,Noise,638
+5,2014,10021,Broken Muni Meter,636
+2,2015,10021,Noise,687
+1,2016,10021,Noise,694
+4,2010,10022,Taxi Complaint,918
+5,2010,10022,Broken Muni Meter,911
+rnum,year,incident_zip,complaint_type,incident_count
+2,2015,10022,Street Condition,986
+1,2016,10022,Homeless Person Assistance,1126
+3,2018,10022,Street Condition,925
+4,2013,10023,Broken Muni Meter,1803
+2,2014,10023,Broken Muni Meter,2462
+rnum,year,incident_zip,complaint_type,incident_count
+1,2016,10023,Homeless Person Assistance,2984
+3,2017,10023,Homeless Person Assistance,1850
+5,2018,10023,Homeless Person Assistance,1522
+2,2014,10024,Broken Muni Meter,1601
+1,2016,10024,HEAT/HOT WATER,1801
+3,2016,10024,Homeless Person Assistance,1398
+rnum,year,incident_zip,complaint_type,incident_count
+4,2017,10024,Noise - Residential,1360
+5,2017,10024,HEAT/HOT WATER,1309
+5,2010,10025,HEATING,2414
+4,2013,10025,HEATING,2447
+1,2015,10025,HEAT/HOT WATER,3138
+rnum,year,incident_zip,complaint_type,incident_count
+2,2016,10025,HEAT/HOT WATER,2739
+3,2018,10025,HEAT/HOT WATER,2521
+1,2018,10026,New Tree Request,9324
+2,2019,10026,New Tree Request,8438
+3,2019,10026,Rodent,5794
+4,2019,10026,Noise - Residential,4937
+5,2019,10026,Noise - Street/Sidewalk,3568
+rnum,year,incident_zip,complaint_type,incident_count
+1,2014,10027,Noise - Residential,2751
+2,2015,10027,Noise - Residential,2590
+5,2015,10027,HEAT/HOT WATER,2546
+4,2016,10027,Noise - Residential,2561
+rnum,year,incident_zip,complaint_type,incident_count
+3,2017,10027,Noise - Residential,2566
+4,2014,10028,Broken Muni Meter,857
+1,2015,10028,Noise,1120
+3,2015,10028,HEAT/HOT WATER,943
+2,2017,10028,Noise,1011
+5,2018,10028,Noise,820
+rnum,year,incident_zip,complaint_type,incident_count
+3,2015,10029,Noise - Residential,2771
+4,2015,10029,HEAT/HOT WATER,2712
+5,2016,10029,Noise - Residential,2577
+1,2017,10029,Noise - Residential,3285
+2,2018,10029,Noise - Residential,2946
+2,2013,10030,HEATING,2049
+rnum,year,incident_zip,complaint_type,incident_count
+4,2014,10030,Noise - Residential,1878
+1,2015,10030,HEAT/HOT WATER,2100
+3,2016,10030,Noise - Residential,1924
+5,2018,10030,HEAT/HOT WATER,1800
+2,2016,10031,HEAT/HOT WATER,5029
+5,2016,10031,Noise - Residential,4326
+rnum,year,incident_zip,complaint_type,incident_count
+3,2017,10031,HEAT/HOT WATER,4882
+4,2017,10031,Noise - Residential,4383
+1,2018,10031,HEAT/HOT WATER,5125
+2,2010,10032,HEATING,4011
+5,2011,10032,HEATING,3418
+rnum,year,incident_zip,complaint_type,incident_count
+1,2015,10032,HEAT/HOT WATER,4165
+3,2016,10032,HEAT/HOT WATER,3634
+4,2017,10032,HEAT/HOT WATER,3440
+5,2010,10033,HEATING,3125
+2,2015,10033,HEAT/HOT WATER,3646
+3,2016,10033,HEAT/HOT WATER,3566
+rnum,year,incident_zip,complaint_type,incident_count
+4,2017,10033,Noise - Residential,3244
+1,2018,10033,HEAT/HOT WATER,3673
+1,2012,10034,HEATING,3359
+4,2015,10034,HEAT/HOT WATER,2804
+2,2016,10034,Noise - Residential,3183
+rnum,year,incident_zip,complaint_type,incident_count
+3,2017,10034,Noise - Residential,2974
+5,2018,10034,HEAT/HOT WATER,2738
+4,2015,10035,HEAT/HOT WATER,1463
+3,2016,10035,Noise - Residential,1487
+1,2017,10035,Noise - Residential,1580
+2,2017,10035,HEAT/HOT WATER,1497
+rnum,year,incident_zip,complaint_type,incident_count
+5,2018,10035,Noise - Residential,1399
+1,2016,10036,Homeless Person Assistance,3080
+4,2016,10036,Noise - Commercial,1105
+5,2016,10036,Illegal Parking,1035
+2,2017,10036,Homeless Person Assistance,1339
+3,2017,10036,Noise,1157
+rnum,year,incident_zip,complaint_type,incident_count
+3,2010,10037,HEATING,992
+4,2016,10037,HEAT/HOT WATER,979
+2,2017,10037,HEAT/HOT WATER,1071
+5,2017,10037,Noise - Residential,785
+1,2018,10037,HEAT/HOT WATER,1390
+rnum,year,incident_zip,complaint_type,incident_count
+2,2014,10038,Noise,828
+5,2015,10038,Noise,713
+3,2016,10038,Illegal Parking,790
+4,2017,10038,Noise,755
+1,2018,10038,Noise,976
+3,2014,10039,Noise - Residential,1779
+rnum,year,incident_zip,complaint_type,incident_count
+5,2015,10039,Noise - Residential,1391
+1,2016,10039,Noise - Residential,2327
+4,2017,10039,Noise - Residential,1723
+2,2018,10039,Noise - Residential,1929
+5,2010,10040,HEATING,4768
+3,2011,10040,HEATING,4998
+rnum,year,incident_zip,complaint_type,incident_count
+4,2012,10040,HEATING,4873
+2,2013,10040,HEATING,5543
+1,2015,10040,HEAT/HOT WATER,5832
+2,2015,10041,Noise,14
+4,2015,10041,Street Condition,11
+rnum,year,incident_zip,complaint_type,incident_count
+1,2016,10041,Street Condition,20
+3,2018,10041,Street Condition,12
+5,2018,10041,Taxi Complaint,7
+1,2010,10044,Bridge Condition,76
+2,2014,10044,HEATING,57
+5,2015,10044,HEAT/HOT WATER,47
+rnum,year,incident_zip,complaint_type,incident_count
+4,2017,10044,Lead,50
+3,2019,10044,Noise,56
+2,2016,10045,Noise,2
+3,2016,10045,Illegal Parking,2
+1,2017,10045,Noise,2
+5,2017,10045,Street Condition,1
+rnum,year,incident_zip,complaint_type,incident_count
+4,2018,10045,Illegal Parking,2
+1,2012,10048,Traffic Signal Condition,13
+4,2013,10048,Traffic Signal Condition,12
+2,2014,10048,Traffic Signal Condition,13
+5,2014,10048,Taxi Complaint,11
+rnum,year,incident_zip,complaint_type,incident_count
+3,2015,10048,Traffic Signal Condition,12
+4,2016,10055,Sustainability Enforcement,1
+1,2018,10055,Special Projects Inspection Team (SPIT),3
+3,2018,10055,DOF Property - Update Account,1
+5,2018,10055,DOF Property - Request Copy,1
+2,2019,10055,Taxi Complaint,1
+rnum,year,incident_zip,complaint_type,incident_count
+4,2010,10069,Taxi Complaint,60
+2,2013,10069,Illegal Parking,67
+1,2016,10069,Noise,79
+3,2017,10069,Noise,62
+5,2018,10069,Noise,55
+2,2013,10103,Broken Muni Meter,14
+rnum,year,incident_zip,complaint_type,incident_count
+4,2016,10103,Homeless Person Assistance,9
+3,2018,10103,Homeless Person Assistance,12
+5,2018,10103,Illegal Parking,8
+1,2019,10103,Homeless Person Assistance,16
+2,2012,10104,Broken Muni Meter,1
+4,2012,10104,Blocked Driveway,1
+5,2012,10104,Sidewalk Condition,1
+rnum,year,incident_zip,complaint_type,incident_count
+1,2013,10104,Broken Muni Meter,3
+3,2017,10104,Taxi Complaint,1
+2,2017,10105,Street Condition,6
+3,2017,10105,Homeless Person Assistance,6
+4,2017,10105,BEST/Site Safety,5
+rnum,year,incident_zip,complaint_type,incident_count
+5,2018,10105,Street Condition,4
+1,2019,10105,Noise,20
+2,2016,10106,Noise,7
+4,2017,10106,Noise,4
+5,2017,10106,Homeless Person Assistance,4
+rnum,year,incident_zip,complaint_type,incident_count
+1,2019,10106,Noise,16
+3,2019,10106,Noise - Vehicle,6
+4,2014,10107,Noise,4
+5,2015,10107,Broken Muni Meter,3
+2,2016,10107,Homeless Person Assistance,5
+1,2018,10107,Noise,7
+3,2018,10107,General Construction/Plumbing,4
+rnum,year,incident_zip,complaint_type,incident_count
+1,2016,10110,Homeless Person Assistance,16
+2,2017,10110,Homeless Person Assistance,6
+3,2017,10110,Street Condition,5
+rnum,year,incident_zip,complaint_type,incident_count
+4,2018,10110,General Construction/Plumbing,4
+5,2018,10110,Street Condition,3
+2,2013,10111,Broken Muni Meter,12
+5,2014,10111,Broken Muni Meter,4
+1,2017,10111,Vending,15
+4,2017,10111,Food Establishment,5
+3,2018,10111,Food Establishment,6
+rnum,year,incident_zip,complaint_type,incident_count
+5,2013,10112,Food Establishment,7
+3,2015,10112,Noise,14
+2,2016,10112,Vending,20
+1,2017,10112,Vending,89
+4,2018,10112,Consumer Complaint,7
+2,2017,10115,Damaged Tree,3
+5,2017,10115,Homeless Person Assistance,2
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,10115,Water System,6
+3,2018,10115,Food Establishment,3
+4,2018,10115,Derelict Bicycle,3
+3,2013,10118,Noise,9
+rnum,year,incident_zip,complaint_type,incident_count
+5,2015,10118,Water System,7
+1,2016,10118,Noise - Street/Sidewalk,13
+2,2016,10118,Homeless Person Assistance,12
+4,2017,10118,Homeless Person Assistance,8
+4,2013,10119,Broken Muni Meter,22
+2,2016,10119,Homeless Person Assistance,33
+rnum,year,incident_zip,complaint_type,incident_count
+1,2017,10119,Homeless Person Assistance,62
+5,2017,10119,Taxi Complaint,21
+3,2018,10119,Homeless Person Assistance,29
+3,2017,10120,Consumer Complaint,10
+5,2017,10120,Homeless Person Assistance,5
+1,2018,10120,Vending,76
+4,2018,10120,Consumer Complaint,10
+rnum,year,incident_zip,complaint_type,incident_count
+2,2019,10120,Vending,26
+3,2011,10121,Construction Safety Enforcement,24
+1,2017,10121,Homeless Person Assistance,27
+2,2017,10121,Taxi Complaint,27
+rnum,year,incident_zip,complaint_type,incident_count
+4,2018,10121,Homeless Person Assistance,22
+5,2019,10121,Taxi Complaint,20
+5,2013,10122,Consumer Complaint,2
+2,2016,10122,Homeless Person Assistance,3
+1,2017,10122,Homeless Encampment,9
+3,2018,10122,Noise,3
+4,2018,10122,Homeless Person Assistance,2
+rnum,year,incident_zip,complaint_type,incident_count
+3,2015,10123,Non-Residential Heat,5
+4,2016,10123,Homeless Person Assistance,4
+1,2017,10123,Consumer Complaint,9
+2,2018,10123,Consumer Complaint,6
+5,2018,10123,Homeless Person Assistance,4
+rnum,year,incident_zip,complaint_type,incident_count
+4,2014,10128,Noise - Residential,927
+1,2015,10128,Noise,1571
+3,2015,10128,Noise - Residential,968
+5,2015,10128,HEAT/HOT WATER,855
+2,2016,10128,Noise,1272
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,10151,SCRIE,10
+2,2018,10151,Homeless Person Assistance,7
+4,2018,10151,Illegal Parking,7
+3,2019,10151,Illegal Parking,7
+5,2019,10151,Homeless Person Assistance,5
+2,2017,10152,Sidewalk Condition,7
+4,2017,10152,Street Condition,2
+5,2017,10152,Curb Condition,2
+rnum,year,incident_zip,complaint_type,incident_count
+3,2018,10152,Street Sign - Damaged,3
+1,2019,10152,Noise - Street/Sidewalk,9
+5,2013,10153,Noise - Street/Sidewalk,5
+1,2014,10153,Consumer Complaint,8
+rnum,year,incident_zip,complaint_type,incident_count
+3,2015,10153,Taxi Complaint,6
+4,2016,10153,Consumer Complaint,5
+2,2017,10153,Non-Residential Heat,6
+1,2016,10154,Homeless Person Assistance,10
+2,2017,10154,Homeless Person Assistance,8
+rnum,year,incident_zip,complaint_type,incident_count
+3,2018,10154,Sidewalk Condition,3
+4,2018,10154,Illegal Parking,3
+5,2019,10154,Street Condition,2
+3,2016,10155,Water System,3
+5,2017,10155,Air Quality,1
+1,2018,10155,Street Condition,10
+4,2018,10155,Taxi Complaint,2
+rnum,year,incident_zip,complaint_type,incident_count
+2,2019,10155,Elevator,3
+3,2016,10158,Taxi Complaint,10
+4,2017,10158,Noise,7
+5,2017,10158,UNSANITARY CONDITION,3
+1,2018,10158,Noise,28
+2,2018,10158,Noise - Street/Sidewalk,14
+rnum,year,incident_zip,complaint_type,incident_count
+2,2011,10162,SCRIE,17
+3,2012,10162,SCRIE,14
+4,2014,10162,Noise - Residential,10
+1,2015,10162,Noise - Commercial,19
+5,2015,10162,DOF Parking - Tax Exemption,8
+rnum,year,incident_zip,complaint_type,incident_count
+2,2017,10165,Taxi Complaint,9
+4,2017,10165,For Hire Vehicle Complaint,3
+1,2018,10165,Taxi Complaint,9
+5,2018,10165,Vending,3
+3,2019,10165,Noise - Street/Sidewalk,4
+rnum,year,incident_zip,complaint_type,incident_count
+1,2016,10166,Food Establishment,1
+3,2016,10166,Street Condition,1
+2,2017,10166,Taxi Complaint,1
+3,2016,10167,Homeless Person Assistance,2
+2,2017,10167,Taxi Complaint,3
+5,2017,10167,DOF Property - Request Copy,2
+rnum,year,incident_zip,complaint_type,incident_count
+4,2018,10167,Taxi Complaint,2
+1,2019,10167,Water System,4
+4,2016,10168,Taxi Complaint,8
+2,2017,10168,Taxi Complaint,16
+3,2017,10168,Homeless Person Assistance,14
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,10168,Taxi Complaint,22
+5,2019,10168,Homeless Person Assistance,6
+2,2016,10169,Homeless Person Assistance,16
+1,2017,10169,Homeless Person Assistance,34
+5,2017,10169,Street Condition,9
+4,2018,10169,Homeless Person Assistance,13
+rnum,year,incident_zip,complaint_type,incident_count
+3,2019,10169,Homeless Person Assistance,15
+2,2016,10170,Homeless Person Assistance,3
+1,2017,10170,Homeless Person Assistance,4
+3,2017,10170,Taxi Complaint,3
+5,2017,10170,Street Condition,2
+4,2018,10170,Street Condition,2
+rnum,year,incident_zip,complaint_type,incident_count
+1,2017,10171,Street Condition,2
+2,2018,10171,Street Condition,2
+3,2018,10171,Taxi Report,1
+4,2019,10171,Noise - Vehicle,1
+5,2019,10171,Food Poisoning,1
+rnum,year,incident_zip,complaint_type,incident_count
+4,2016,10172,Taxi Complaint,4
+5,2016,10172,Homeless Person Assistance,3
+1,2017,10172,Taxi Complaint,13
+3,2017,10172,Street Condition,5
+2,2018,10172,Taxi Complaint,6
+rnum,year,incident_zip,complaint_type,incident_count
+5,2016,10173,Homeless Person Assistance,2
+1,2017,10173,Homeless Person Assistance,15
+4,2017,10173,Street Condition,3
+2,2018,10173,Homeless Person Assistance,5
+3,2019,10173,Homeless Person Assistance,3
+1,2016,10174,Homeless Person Assistance,7
+5,2016,10174,Illegal Parking,3
+rnum,year,incident_zip,complaint_type,incident_count
+3,2017,10174,Homeless Person Assistance,5
+4,2018,10174,Noise,3
+2,2019,10174,Noise,6
+3,2017,10175,Graffiti,1
+5,2017,10175,Animal Abuse,1
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,10175,Special Projects Inspection Team (SPIT),1
+2,2018,10175,Dirty Conditions,1
+4,2018,10175,Graffiti,1
+5,2016,10176,Homeless Person Assistance,2
+2,2017,10176,Homeless Person Assistance,2
+3,2017,10176,Food Establishment,2
+4,2017,10176,Elevator,2
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,10176,For Hire Vehicle Complaint,3
+1,2016,10177,Homeless Person Assistance,8
+2,2017,10177,Street Condition,4
+3,2018,10177,Noise - Street/Sidewalk,2
+4,2018,10177,Homeless Person Assistance,2
+rnum,year,incident_zip,complaint_type,incident_count
+5,2019,10177,Noise,2
+1,2017,10178,Homeless Person Assistance,4
+2,2018,10178,Consumer Complaint,3
+3,2018,10178,Broken Parking Meter,2
+4,2018,10178,Street Condition,2
+rnum,year,incident_zip,complaint_type,incident_count
+5,2019,10178,Illegal Parking,1
+1,2017,10270,Taxi Complaint,1
+2,2017,10271,Vending,6
+3,2018,10271,Homeless Person Assistance,5
+4,2018,10271,General Construction/Plumbing,5
+5,2018,10271,Vending,4
+rnum,year,incident_zip,complaint_type,incident_count
+1,2019,10271,Noise,10
+3,2017,10278,Street Condition,12
+5,2017,10278,Illegal Parking,10
+1,2018,10278,Street Condition,14
+2,2018,10278,Illegal Parking,13
+4,2019,10278,Illegal Parking,10
+rnum,year,incident_zip,complaint_type,incident_count
+3,2016,10279,Homeless Person Assistance,5
+4,2016,10279,Panhandling,3
+1,2017,10279,Noise,18
+2,2017,10279,Food Establishment,5
+5,2019,10279,Noise,3
+rnum,year,incident_zip,complaint_type,incident_count
+5,2012,10280,Noise,74
+4,2013,10280,Noise,80
+2,2014,10280,Noise,97
+3,2015,10280,Noise,83
+1,2017,10280,Illegal Parking,182
+4,2012,10281,Noise,23
+rnum,year,incident_zip,complaint_type,incident_count
+3,2013,10281,Taxi Complaint,24
+2,2015,10281,For Hire Vehicle Complaint,41
+1,2017,10281,Illegal Parking,57
+5,2017,10281,Noise - Vehicle,23
+2,2016,10282,GENERAL,158
+3,2016,10282,HEAT/HOT WATER,102
+5,2016,10282,PLUMBING,79
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,10282,Illegal Parking,574
+4,2019,10282,Illegal Parking,100
+2,2014,10301,Street Condition,1214
+1,2015,10301,Street Condition,1496
+rnum,year,incident_zip,complaint_type,incident_count
+5,2016,10301,Noise - Residential,1052
+3,2018,10301,Illegal Parking,1096
+4,2019,10301,Noise,1094
+4,2015,10302,Street Condition,500
+2,2017,10302,Electronics Waste,505
+3,2017,10302,Noise - Residential,505
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,10302,Noise - Residential,578
+5,2018,10302,Electronics Waste,482
+3,2015,10303,Street Condition,689
+4,2017,10303,Electronics Waste,619
+1,2018,10303,Request Large Bulky Item Collection,784
+2,2018,10303,Noise - Residential,718
+5,2018,10303,Electronics Waste,603
+rnum,year,incident_zip,complaint_type,incident_count
+3,2014,10304,Street Condition,1262
+4,2014,10304,Noise - Residential,1225
+1,2015,10304,Street Condition,1421
+5,2015,10304,Noise - Residential,1162
+2,2018,10304,Noise - Residential,1318
+rnum,year,incident_zip,complaint_type,incident_count
+2,2014,10305,Street Condition,1377
+1,2015,10305,Street Condition,1414
+5,2016,10305,Illegal Parking,1009
+3,2018,10305,Request Large Bulky Item Collection,1076
+4,2018,10305,Street Condition,1063
+rnum,year,incident_zip,complaint_type,incident_count
+3,2010,10306,Street Condition,2135
+4,2011,10306,Street Condition,1916
+1,2014,10306,Street Condition,2244
+2,2015,10306,Street Condition,2138
+5,2018,10306,Street Condition,1688
+5,2014,10307,Street Condition,375
+rnum,year,incident_zip,complaint_type,incident_count
+3,2015,10307,Street Condition,433
+4,2017,10307,Electronics Waste,430
+1,2018,10307,Request Large Bulky Item Collection,466
+2,2018,10307,Electronics Waste,436
+3,2014,10308,Street Condition,1076
+1,2015,10308,Street Condition,1121
+rnum,year,incident_zip,complaint_type,incident_count
+4,2017,10308,Electronics Waste,941
+2,2018,10308,Request Large Bulky Item Collection,1096
+5,2018,10308,Electronics Waste,910
+5,2011,10309,Street Condition,1104
+2,2014,10309,Street Condition,1489
+rnum,year,incident_zip,complaint_type,incident_count
+1,2015,10309,Street Condition,1561
+3,2018,10309,Request Large Bulky Item Collection,1150
+4,2018,10309,Street Condition,1146
+1,2019,10310,Noise - Residential,6534
+2,2019,10310,Illegal Parking,4708
+3,2019,10310,Noise - Street/Sidewalk,3598
+4,2019,10310,Blocked Driveway,3014
+5,2019,10310,Unsanitary Condition,1843
+rnum,year,incident_zip,complaint_type,incident_count
+2,2014,10312,Street Condition,2159
+1,2015,10312,Street Condition,2465
+4,2017,10312,Electronics Waste,1817
+3,2018,10312,Request Large Bulky Item Collection,2008
+5,2018,10312,Electronics Waste,1801
+rnum,year,incident_zip,complaint_type,incident_count
+2,2014,10314,Street Condition,2938
+1,2015,10314,Street Condition,3134
+4,2017,10314,Electronics Waste,2474
+3,2018,10314,Request Large Bulky Item Collection,2700
+5,2018,10314,Electronics Waste,2312
+rnum,year,incident_zip,complaint_type,incident_count
+5,2011,10451,HEATING,2422
+3,2015,10451,HEAT/HOT WATER,2870
+1,2016,10451,HEAT/HOT WATER,3298
+4,2017,10451,HEAT/HOT WATER,2639
+2,2018,10451,HEAT/HOT WATER,3084
+rnum,year,incident_zip,complaint_type,incident_count
+5,2010,10452,HEATING,4825
+4,2012,10452,HEATING,4858
+2,2013,10452,HEATING,5173
+3,2017,10452,HEAT/HOT WATER,5009
+1,2018,10452,HEAT/HOT WATER,5676
+3,2010,10453,HEATING,5895
+rnum,year,incident_zip,complaint_type,incident_count
+5,2013,10453,HEATING,5687
+1,2015,10453,HEAT/HOT WATER,6515
+2,2016,10453,HEAT/HOT WATER,6464
+4,2017,10453,HEAT/HOT WATER,5821
+5,2015,10454,Noise - Residential,1238
+rnum,year,incident_zip,complaint_type,incident_count
+3,2016,10454,Noise - Residential,1423
+4,2016,10454,HEAT/HOT WATER,1290
+1,2017,10454,Noise - Residential,1521
+2,2018,10454,Noise - Residential,1470
+5,2010,10455,HEATING,1641
+2,2013,10455,HEATING,1807
+3,2013,10455,Noise - Residential,1754
+rnum,year,incident_zip,complaint_type,incident_count
+4,2016,10455,HEAT/HOT WATER,1670
+1,2018,10455,HEAT/HOT WATER,1932
+5,2010,10456,HEATING,4406
+4,2015,10456,HEAT/HOT WATER,4446
+1,2016,10456,HEAT/HOT WATER,4667
+3,2016,10456,Noise - Residential,4544
+rnum,year,incident_zip,complaint_type,incident_count
+2,2017,10456,HEAT/HOT WATER,4576
+3,2010,10457,HEATING,4572
+4,2015,10457,HEAT/HOT WATER,4446
+2,2016,10457,HEAT/HOT WATER,4705
+rnum,year,incident_zip,complaint_type,incident_count
+5,2017,10457,HEAT/HOT WATER,4408
+1,2018,10457,HEAT/HOT WATER,5014
+5,2010,10458,HEATING,6118
+2,2015,10458,HEAT/HOT WATER,6891
+1,2016,10458,HEAT/HOT WATER,7030
+3,2017,10458,HEAT/HOT WATER,6707
+rnum,year,incident_zip,complaint_type,incident_count
+4,2018,10458,HEAT/HOT WATER,6438
+2,2010,10459,HEATING,2512
+5,2015,10459,HEAT/HOT WATER,2339
+3,2016,10459,HEAT/HOT WATER,2458
+4,2017,10459,HEAT/HOT WATER,2353
+1,2018,10459,HEAT/HOT WATER,2516
+rnum,year,incident_zip,complaint_type,incident_count
+2,2010,10460,HEATING,3652
+5,2015,10460,HEAT/HOT WATER,3057
+4,2016,10460,HEAT/HOT WATER,3467
+3,2017,10460,HEAT/HOT WATER,3468
+1,2018,10460,HEAT/HOT WATER,3705
+rnum,year,incident_zip,complaint_type,incident_count
+5,2010,10461,HEATING,1605
+3,2012,10461,HEATING,1690
+1,2016,10461,HEAT/HOT WATER,1766
+2,2018,10461,HEAT/HOT WATER,1749
+4,2018,10461,Illegal Parking,1665
+5,2010,10462,HEATING,3192
+rnum,year,incident_zip,complaint_type,incident_count
+4,2015,10462,HEAT/HOT WATER,4343
+1,2016,10462,HEAT/HOT WATER,4997
+2,2017,10462,HEAT/HOT WATER,4548
+3,2018,10462,HEAT/HOT WATER,4396
+2,2013,10463,HEATING,4853
+1,2014,10463,HEATING,4917
+rnum,year,incident_zip,complaint_type,incident_count
+3,2015,10463,HEAT/HOT WATER,3998
+4,2016,10463,HEAT/HOT WATER,3346
+5,2017,10463,HEAT/HOT WATER,3343
+1,2013,10464,Rodent,484
+2,2013,10464,Illegal Parking,359
+rnum,year,incident_zip,complaint_type,incident_count
+4,2014,10464,Dirty Conditions,317
+3,2016,10464,Illegal Parking,329
+5,2018,10464,Illegal Parking,301
+4,2016,10465,Illegal Parking,1116
+5,2016,10465,Noise - Residential,1076
+3,2017,10465,Illegal Parking,1243
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,10465,Request Large Bulky Item Collection,1909
+2,2018,10465,Illegal Parking,1591
+4,2015,10466,HEAT/HOT WATER,2596
+3,2016,10466,Noise - Residential,2601
+5,2016,10466,HEAT/HOT WATER,2512
+1,2017,10466,Noise - Residential,2864
+2,2017,10466,HEAT/HOT WATER,2605
+rnum,year,incident_zip,complaint_type,incident_count
+3,2010,10467,HEATING,6408
+4,2013,10467,HEATING,6399
+1,2015,10467,HEAT/HOT WATER,7144
+2,2016,10467,HEAT/HOT WATER,6726
+rnum,year,incident_zip,complaint_type,incident_count
+5,2018,10467,HEAT/HOT WATER,6361
+4,2010,10468,HEATING,5769
+2,2013,10468,HEATING,6060
+1,2015,10468,HEAT/HOT WATER,6757
+3,2016,10468,HEAT/HOT WATER,5973
+5,2017,10468,Noise - Residential,5499
+rnum,year,incident_zip,complaint_type,incident_count
+3,2015,10469,Noise - Residential,1716
+4,2016,10469,Blocked Driveway,1699
+2,2017,10469,Blocked Driveway,1956
+5,2017,10469,Noise - Residential,1620
+1,2018,10469,Blocked Driveway,1997
+1,2015,10470,HEAT/HOT WATER,996
+rnum,year,incident_zip,complaint_type,incident_count
+2,2016,10470,HEAT/HOT WATER,954
+5,2017,10470,HEAT/HOT WATER,779
+3,2018,10470,Illegal Parking,866
+4,2018,10470,HEAT/HOT WATER,831
+4,2014,10471,Street Condition,732
+rnum,year,incident_zip,complaint_type,incident_count
+3,2015,10471,Street Condition,769
+2,2016,10471,Street Condition,779
+1,2017,10471,Street Condition,845
+5,2018,10471,Street Condition,697
+5,2010,10472,HEATING,3017
+3,2015,10472,HEAT/HOT WATER,3984
+rnum,year,incident_zip,complaint_type,incident_count
+1,2016,10472,HEAT/HOT WATER,4780
+2,2017,10472,HEAT/HOT WATER,4291
+4,2018,10472,HEAT/HOT WATER,3122
+4,2014,10473,Noise - Residential,1297
+5,2015,10473,Noise - Residential,1265
+3,2016,10473,Noise - Residential,1361
+rnum,year,incident_zip,complaint_type,incident_count
+1,2017,10473,Noise - Residential,1751
+2,2018,10473,Noise - Residential,1499
+4,2010,10474,HEATING,684
+1,2015,10474,Noise - Residential,764
+5,2015,10474,HEAT/HOT WATER,666
+rnum,year,incident_zip,complaint_type,incident_count
+2,2016,10474,Noise - Residential,755
+3,2016,10474,HEAT/HOT WATER,732
+5,2010,10475,Street Light Condition,364
+1,2011,10475,Street Light Condition,480
+2,2012,10475,Street Light Condition,419
+3,2014,10475,Street Light Condition,389
+rnum,year,incident_zip,complaint_type,incident_count
+4,2015,10475,Street Light Condition,383
+4,2010,11004,Damaged Tree,286
+5,2010,11004,Street Light Condition,269
+1,2012,11004,Damaged Tree,651
+3,2015,11004,Street Light Condition,336
+2,2018,11004,Request Large Bulky Item Collection,336
+rnum,year,incident_zip,complaint_type,incident_count
+5,2015,11101,Street Condition,1306
+4,2016,11101,Illegal Parking,1589
+2,2017,11101,Illegal Parking,2343
+1,2018,11101,Illegal Parking,3099
+3,2019,11101,Illegal Parking,1681
+rnum,year,incident_zip,complaint_type,incident_count
+3,2015,11102,Noise - Residential,1051
+1,2016,11102,Noise - Residential,1134
+4,2016,11102,Blocked Driveway,1042
+2,2017,11102,Blocked Driveway,1067
+5,2018,11102,Blocked Driveway,1024
+5,2015,11103,Blocked Driveway,1142
+rnum,year,incident_zip,complaint_type,incident_count
+4,2017,11103,Blocked Driveway,1175
+1,2018,11103,Blocked Driveway,1225
+2,2018,11103,Noise - Commercial,1221
+3,2018,11103,Request Large Bulky Item Collection,1215
+3,2012,11104,HEATING,832
+1,2015,11104,Noise - Residential,1064
+rnum,year,incident_zip,complaint_type,incident_count
+5,2016,11104,Noise - Residential,785
+2,2017,11104,HEAT/HOT WATER,875
+4,2018,11104,HEAT/HOT WATER,814
+3,2013,11105,New Tree Request,921
+5,2015,11105,HEAT/HOT WATER,888
+rnum,year,incident_zip,complaint_type,incident_count
+2,2017,11105,Blocked Driveway,923
+1,2018,11105,Request Large Bulky Item Collection,1358
+4,2018,11105,Illegal Parking,908
+5,2015,11106,Noise - Residential,964
+1,2016,11106,Noise - Residential,1209
+2,2017,11106,Noise - Residential,1059
+4,2017,11106,Blocked Driveway,1012
+rnum,year,incident_zip,complaint_type,incident_count
+3,2018,11106,Blocked Driveway,1023
+5,2012,11109,Noise,49
+4,2014,11109,Illegal Parking,50
+3,2015,11109,Noise,63
+1,2017,11109,Illegal Parking,82
+rnum,year,incident_zip,complaint_type,incident_count
+2,2018,11109,Illegal Parking,69
+1,2016,11201,Noise,1755
+5,2017,11201,Noise,1538
+2,2018,11201,Noise - Residential,1655
+3,2018,11201,Request Large Bulky Item Collection,1642
+4,2018,11201,Illegal Parking,1611
+rnum,year,incident_zip,complaint_type,incident_count
+1,2010,11203,HEATING,3256
+5,2012,11203,HEATING,2904
+2,2013,11203,HEATING,3005
+4,2017,11203,HEAT/HOT WATER,2963
+3,2018,11203,HEAT/HOT WATER,2975
+rnum,year,incident_zip,complaint_type,incident_count
+3,2016,11204,Illegal Parking,2169
+2,2017,11204,Illegal Parking,2653
+5,2017,11204,Blocked Driveway,1725
+1,2018,11204,Illegal Parking,4186
+4,2018,11204,Blocked Driveway,1799
+4,2015,11205,HEAT/HOT WATER,1587
+rnum,year,incident_zip,complaint_type,incident_count
+1,2016,11205,Noise - Residential,5370
+5,2016,11205,Illegal Parking,1393
+3,2017,11205,Noise - Residential,2153
+2,2018,11205,Noise - Residential,2743
+1,2014,11206,Noise - Residential,3314
+rnum,year,incident_zip,complaint_type,incident_count
+5,2015,11206,Noise - Residential,3049
+3,2016,11206,Noise - Residential,3108
+4,2017,11206,Noise - Residential,3076
+2,2018,11206,Noise - Residential,3191
+1,2010,11207,HEATING,3474
+3,2011,11207,GENERAL CONSTRUCTION,3171
+rnum,year,incident_zip,complaint_type,incident_count
+2,2015,11207,Noise - Residential,3399
+4,2017,11207,Noise - Residential,3064
+5,2018,11207,Noise - Residential,3015
+4,2010,11208,HEATING,2664
+5,2015,11208,HEAT/HOT WATER,2599
+2,2017,11208,Noise - Residential,2796
+3,2017,11208,Blocked Driveway,2757
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,11208,Blocked Driveway,2893
+3,2016,11209,Illegal Parking,3002
+2,2017,11209,Illegal Parking,3289
+5,2017,11209,Request Large Bulky Item Collection,2837
+1,2018,11209,Request Large Bulky Item Collection,6622
+4,2018,11209,Illegal Parking,2854
+rnum,year,incident_zip,complaint_type,incident_count
+2,2010,11210,HEATING,2374
+5,2011,11210,HEATING,1974
+4,2015,11210,HEAT/HOT WATER,2025
+1,2016,11210,HEAT/HOT WATER,2514
+rnum,year,incident_zip,complaint_type,incident_count
+3,2017,11210,HEAT/HOT WATER,2305
+5,2015,11211,Noise - Residential,1764
+4,2016,11211,Noise - Residential,1817
+2,2017,11211,Noise - Residential,2014
+1,2018,11211,Noise - Residential,2081
+3,2018,11211,Request Large Bulky Item Collection,1898
+rnum,year,incident_zip,complaint_type,incident_count
+2,2010,11212,HEATING,3646
+5,2011,11212,HEATING,3331
+4,2012,11212,HEATING,3449
+1,2015,11212,HEAT/HOT WATER,3676
+3,2016,11212,HEAT/HOT WATER,3627
+2,2010,11213,HEATING,4184
+rnum,year,incident_zip,complaint_type,incident_count
+4,2013,11213,HEATING,4127
+3,2015,11213,HEAT/HOT WATER,4131
+1,2016,11213,HEAT/HOT WATER,4337
+5,2017,11213,HEAT/HOT WATER,4100
+5,2016,11214,Illegal Parking,2135
+rnum,year,incident_zip,complaint_type,incident_count
+2,2017,11214,Illegal Parking,3159
+4,2017,11214,Blocked Driveway,2199
+1,2018,11214,Illegal Parking,3727
+3,2018,11214,Blocked Driveway,2338
+4,2017,11215,Illegal Parking,1872
+5,2017,11215,Request Large Bulky Item Collection,1584
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,11215,Request Large Bulky Item Collection,5647
+3,2018,11215,Illegal Parking,2137
+2,2019,11215,Request Large Bulky Item Collection,2995
+1,2010,11216,HEATING,3101
+4,2011,11216,HEATING,2832
+5,2011,11216,GENERAL CONSTRUCTION,2786
+rnum,year,incident_zip,complaint_type,incident_count
+2,2014,11216,Noise - Residential,2941
+3,2015,11216,Noise - Residential,2929
+2,2016,11217,Noise - Commercial,1567
+3,2017,11217,Noise - Commercial,1566
+4,2017,11217,Illegal Parking,1487
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,11217,Request Large Bulky Item Collection,2248
+5,2019,11217,Request Large Bulky Item Collection,1276
+5,2010,11218,HEATING,1862
+3,2016,11218,HEAT/HOT WATER,1980
+4,2016,11218,Illegal Parking,1902
+1,2017,11218,Illegal Parking,2491
+rnum,year,incident_zip,complaint_type,incident_count
+2,2018,11218,Illegal Parking,2023
+5,2010,11219,Street Condition,1630
+4,2015,11219,Illegal Parking,1772
+2,2016,11219,Illegal Parking,2022
+3,2017,11219,Illegal Parking,1915
+1,2018,11219,Request Large Bulky Item Collection,2842
+rnum,year,incident_zip,complaint_type,incident_count
+1,2013,11220,New Tree Request,2822
+5,2015,11220,HEAT/HOT WATER,1936
+4,2016,11220,HEAT/HOT WATER,2008
+3,2017,11220,Illegal Parking,2013
+2,2018,11220,Request Large Bulky Item Collection,2068
+rnum,year,incident_zip,complaint_type,incident_count
+2,2010,11221,HEATING,3906
+5,2015,11221,Noise - Residential,3385
+4,2016,11221,Noise - Residential,3672
+1,2017,11221,Noise - Residential,4020
+3,2018,11221,Noise - Residential,3811
+4,2017,11222,Noise - Residential,988
+5,2017,11222,Illegal Parking,983
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,11222,Request Large Bulky Item Collection,1730
+3,2018,11222,Illegal Parking,1007
+2,2019,11222,Request Large Bulky Item Collection,1086
+2,2017,11223,Illegal Parking,3082
+5,2017,11223,Blocked Driveway,1760
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,11223,Illegal Parking,3940
+3,2018,11223,Blocked Driveway,1957
+4,2019,11223,Illegal Parking,1811
+2,2014,11224,Noise - Residential,1072
+1,2015,11224,Noise - Residential,1095
+rnum,year,incident_zip,complaint_type,incident_count
+4,2016,11224,HEAT/HOT WATER,900
+3,2017,11224,Noise - Residential,974
+5,2018,11224,Noise - Residential,861
+4,2010,11225,HEATING,4541
+5,2015,11225,HEAT/HOT WATER,3975
+1,2016,11225,HEAT/HOT WATER,4814
+rnum,year,incident_zip,complaint_type,incident_count
+3,2017,11225,HEAT/HOT WATER,4544
+2,2018,11225,HEAT/HOT WATER,4787
+3,2010,11226,HEATING,7244
+5,2015,11226,HEAT/HOT WATER,6784
+4,2016,11226,HEAT/HOT WATER,7047
+1,2017,11226,HEAT/HOT WATER,7569
+rnum,year,incident_zip,complaint_type,incident_count
+2,2018,11226,HEAT/HOT WATER,7314
+4,2016,11228,Illegal Parking,1717
+3,2017,11228,Illegal Parking,2209
+5,2017,11228,Request Large Bulky Item Collection,1319
+1,2018,11228,Request Large Bulky Item Collection,3206
+2,2018,11228,Illegal Parking,2366
+rnum,year,incident_zip,complaint_type,incident_count
+2,2010,11229,HEATING,1783
+5,2011,11229,HEATING,1729
+4,2016,11229,HEAT/HOT WATER,1736
+1,2018,11229,Request Large Bulky Item Collection,1803
+3,2018,11229,Blocked Driveway,1745
+rnum,year,incident_zip,complaint_type,incident_count
+2,2010,11230,HEATING,2700
+4,2011,11230,HEATING,2372
+3,2017,11230,Illegal Parking,2440
+5,2017,11230,HEAT/HOT WATER,2276
+1,2018,11230,Illegal Parking,2790
+4,2016,11231,Illegal Parking,894
+rnum,year,incident_zip,complaint_type,incident_count
+5,2017,11231,Request Large Bulky Item Collection,834
+1,2018,11231,Request Large Bulky Item Collection,2823
+3,2018,11231,Illegal Parking,956
+2,2019,11231,Request Large Bulky Item Collection,1376
+1,2011,11232,Street Condition,898
+rnum,year,incident_zip,complaint_type,incident_count
+4,2014,11232,Street Condition,733
+5,2016,11232,Street Condition,703
+2,2017,11232,Noise - Residential,891
+3,2017,11232,Street Condition,748
+2,2010,11233,HEATING,3617
+4,2010,11233,GENERAL CONSTRUCTION,3154
+rnum,year,incident_zip,complaint_type,incident_count
+3,2011,11233,GENERAL CONSTRUCTION,3191
+5,2011,11233,HEATING,3053
+1,2018,11233,HEAT/HOT WATER,3724
+3,2016,11234,Illegal Parking,2559
+1,2017,11234,Illegal Parking,2819
+4,2017,11234,Blocked Driveway,2265
+5,2017,11234,Derelict Vehicles,2148
+rnum,year,incident_zip,complaint_type,incident_count
+2,2018,11234,Illegal Parking,2570
+1,2012,11235,HEATING,2369
+5,2015,11235,HEAT/HOT WATER,1887
+3,2016,11235,HEAT/HOT WATER,2110
+rnum,year,incident_zip,complaint_type,incident_count
+2,2018,11235,HEAT/HOT WATER,2255
+4,2018,11235,Illegal Parking,1906
+4,2015,11236,Blocked Driveway,2146
+3,2016,11236,Blocked Driveway,2682
+1,2017,11236,Blocked Driveway,3045
+2,2018,11236,Blocked Driveway,2934
+5,2018,11236,Derelict Vehicles,2037
+rnum,year,incident_zip,complaint_type,incident_count
+5,2014,11237,Noise - Residential,2219
+3,2015,11237,Noise - Residential,2742
+2,2016,11237,Noise - Residential,3050
+1,2017,11237,Noise - Residential,3177
+4,2018,11237,Noise - Residential,2417
+rnum,year,incident_zip,complaint_type,incident_count
+2,2014,11238,Noise - Residential,2346
+3,2015,11238,Noise - Residential,2071
+1,2016,11238,Noise - Residential,2477
+4,2017,11238,Noise - Residential,2069
+5,2018,11238,Request Large Bulky Item Collection,2024
+rnum,year,incident_zip,complaint_type,incident_count
+2,2016,11239,HEAT/HOT WATER,366
+1,2017,11239,HEAT/HOT WATER,398
+3,2018,11239,HEAT/HOT WATER,211
+4,2018,11239,Noise - Residential,160
+5,2018,11239,Derelict Vehicle,125
+1,2010,11241,Public Payphone Complaint,4
+rnum,year,incident_zip,complaint_type,incident_count
+3,2012,11241,Public Payphone Complaint,3
+4,2013,11241,General Construction/Plumbing,3
+2,2014,11241,Vending,3
+5,2016,11241,Taxi Complaint,2
+3,2010,11242,Vending,4
+rnum,year,incident_zip,complaint_type,incident_count
+4,2017,11242,For Hire Vehicle Complaint,3
+5,2017,11242,SCRIE,2
+1,2018,11242,Water System,11
+2,2019,11242,Water System,8
+1,2010,11243,DOF Property - Reduction Issue,4
+2,2010,11243,Street Condition,4
+3,2010,11243,General Construction/Plumbing,4
+4,2010,11243,DOF Property - Request Copy,3
+5,2010,11243,DOF Property - Payment Issue,2
+rnum,year,incident_zip,complaint_type,incident_count
+2,2016,11249,Noise - Residential,1057
+4,2016,11249,Noise - Commercial,853
+3,2017,11249,Noise - Commercial,1001
+5,2017,11249,Noise - Residential,809
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,11249,HEAT/HOT WATER,1136
+3,2010,11354,Street Condition,1012
+4,2015,11354,Street Condition,994
+5,2017,11354,Blocked Driveway,984
+1,2018,11354,Street Condition,1185
+2,2018,11354,Blocked Driveway,1093
+rnum,year,incident_zip,complaint_type,incident_count
+4,2015,11355,Blocked Driveway,1721
+3,2016,11355,Blocked Driveway,2313
+5,2016,11355,HEAT/HOT WATER,1511
+2,2017,11355,Blocked Driveway,2484
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,11355,Blocked Driveway,2762
+3,2017,11356,Blocked Driveway,857
+5,2017,11356,Illegal Parking,761
+1,2018,11356,Request Large Bulky Item Collection,1251
+2,2018,11356,Blocked Driveway,941
+4,2018,11356,Illegal Parking,834
+rnum,year,incident_zip,complaint_type,incident_count
+4,2012,11357,Damaged Tree,977
+5,2014,11357,Street Condition,942
+3,2015,11357,Street Condition,1147
+1,2018,11357,Request Large Bulky Item Collection,2197
+2,2019,11357,Request Large Bulky Item Collection,1178
+2,2010,11358,Damaged Tree,1377
+rnum,year,incident_zip,complaint_type,incident_count
+4,2012,11358,Damaged Tree,915
+1,2018,11358,Request Large Bulky Item Collection,2520
+5,2018,11358,Blocked Driveway,852
+3,2019,11358,Request Large Bulky Item Collection,1227
+2,2010,11359,Street Condition,10
+rnum,year,incident_zip,complaint_type,incident_count
+1,2011,11359,Street Condition,12
+5,2016,11359,Street Condition,6
+4,2018,11359,Street Condition,7
+3,2019,11359,Street Condition,9
+2,2010,11360,Damaged Tree,345
+1,2018,11360,Request Large Bulky Item Collection,632
+4,2018,11360,Water System,293
+5,2018,11360,Illegal Parking,276
+rnum,year,incident_zip,complaint_type,incident_count
+3,2019,11360,Request Large Bulky Item Collection,317
+4,2010,11361,Damaged Tree,869
+5,2015,11361,Street Condition,758
+2,2017,11361,Request Large Bulky Item Collection,1078
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,11361,Request Large Bulky Item Collection,2564
+3,2019,11361,Request Large Bulky Item Collection,977
+3,2012,11362,Damaged Tree,685
+1,2013,11362,Sidewalk Condition,1139
+5,2015,11362,Street Condition,455
+rnum,year,incident_zip,complaint_type,incident_count
+4,2017,11362,Request Large Bulky Item Collection,461
+2,2018,11362,Request Large Bulky Item Collection,1129
+4,2014,11363,Street Condition,369
+2,2015,11363,Street Condition,503
+3,2016,11363,Street Condition,381
+1,2018,11363,Request Large Bulky Item Collection,547
+5,2018,11363,Street Condition,344
+rnum,year,incident_zip,complaint_type,incident_count
+2,2012,11364,Damaged Tree,897
+4,2015,11364,Street Condition,781
+5,2017,11364,Request Large Bulky Item Collection,763
+1,2018,11364,Request Large Bulky Item Collection,2375
+3,2019,11364,Request Large Bulky Item Collection,784
+rnum,year,incident_zip,complaint_type,incident_count
+2,2010,11365,Damaged Tree,969
+5,2012,11365,Damaged Tree,864
+4,2017,11365,Illegal Parking,967
+1,2018,11365,Request Large Bulky Item Collection,1548
+3,2018,11365,Illegal Parking,968
+5,2016,11366,Noise,1358
+rnum,year,incident_zip,complaint_type,incident_count
+4,2017,11366,Noise,1431
+1,2018,11366,Noise - Vehicle,2801
+3,2018,11366,Illegal Parking,1593
+2,2019,11366,Noise - Vehicle,2080
+1,2010,11367,Damaged Tree,1000
+rnum,year,incident_zip,complaint_type,incident_count
+4,2016,11367,Noise - Residential,735
+5,2017,11367,Noise - Residential,714
+2,2018,11367,Request Large Bulky Item Collection,840
+3,2018,11367,Noise - Residential,751
+5,2014,11368,Blocked Driveway,2561
+4,2015,11368,Blocked Driveway,3597
+rnum,year,incident_zip,complaint_type,incident_count
+3,2016,11368,Blocked Driveway,4142
+1,2017,11368,Blocked Driveway,4388
+2,2018,11368,Blocked Driveway,4337
+4,2015,11369,Blocked Driveway,1285
+3,2016,11369,Blocked Driveway,1505
+1,2017,11369,Blocked Driveway,1751
+5,2017,11369,Noise - Residential,1053
+rnum,year,incident_zip,complaint_type,incident_count
+2,2018,11369,Blocked Driveway,1531
+5,2016,11370,Blocked Driveway,710
+3,2017,11370,Blocked Driveway,770
+4,2017,11370,Illegal Parking,710
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,11370,Illegal Parking,1159
+2,2018,11370,Blocked Driveway,914
+4,2010,11371,Highway Condition,34
+3,2011,11371,Highway Condition,70
+1,2013,11371,Taxi Complaint,80
+2,2015,11371,Highway Condition,74
+rnum,year,incident_zip,complaint_type,incident_count
+5,2017,11371,Taxi Complaint,34
+3,2014,11372,Noise - Residential,1532
+4,2016,11372,Noise - Residential,1505
+2,2017,11372,Noise - Residential,1660
+5,2017,11372,HEAT/HOT WATER,1485
+1,2018,11372,HEAT/HOT WATER,1729
+rnum,year,incident_zip,complaint_type,incident_count
+3,2016,11373,HEAT/HOT WATER,2956
+2,2017,11373,HEAT/HOT WATER,3408
+1,2018,11373,HEAT/HOT WATER,3669
+5,2018,11373,Blocked Driveway,2641
+4,2019,11373,HEAT/HOT WATER,2779
+rnum,year,incident_zip,complaint_type,incident_count
+1,2015,11374,HEAT/HOT WATER,1157
+4,2016,11374,Blocked Driveway,979
+5,2016,11374,HEAT/HOT WATER,956
+2,2017,11374,Blocked Driveway,1051
+3,2018,11374,Illegal Parking,1021
+1,2010,11375,Damaged Tree,1523
+rnum,year,incident_zip,complaint_type,incident_count
+3,2015,11375,Street Condition,1091
+4,2015,11375,HEAT/HOT WATER,1065
+5,2016,11375,HEAT/HOT WATER,1052
+2,2018,11375,Illegal Parking,1156
+4,2015,11377,Blocked Driveway,2065
+5,2016,11377,Blocked Driveway,2057
+rnum,year,incident_zip,complaint_type,incident_count
+2,2017,11377,Illegal Parking,2301
+3,2017,11377,Blocked Driveway,2296
+1,2018,11377,Blocked Driveway,2467
+4,2016,11378,Illegal Parking,2095
+2,2017,11378,Illegal Parking,2338
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,11378,Illegal Parking,2690
+3,2018,11378,Request Large Bulky Item Collection,2234
+5,2019,11378,Illegal Parking,1362
+4,2016,11379,Illegal Parking,1389
+3,2017,11379,Illegal Parking,1730
+1,2018,11379,Request Large Bulky Item Collection,2207
+2,2018,11379,Illegal Parking,1988
+rnum,year,incident_zip,complaint_type,incident_count
+5,2019,11379,Request Large Bulky Item Collection,1133
+4,2016,11385,Illegal Parking,3718
+3,2017,11385,Illegal Parking,4136
+5,2017,11385,Request Large Bulky Item Collection,3465
+1,2018,11385,Request Large Bulky Item Collection,6180
+2,2018,11385,Illegal Parking,4326
+rnum,year,incident_zip,complaint_type,incident_count
+5,2012,11411,Damaged Tree,461
+2,2015,11411,Street Condition,626
+1,2018,11411,Request Large Bulky Item Collection,806
+3,2018,11411,Street Condition,609
+rnum,year,incident_zip,complaint_type,incident_count
+4,2019,11411,Request Large Bulky Item Collection,479
+3,2010,11412,Street Light Condition,680
+2,2012,11412,Damaged Tree,757
+4,2017,11412,Noise - Residential,656
+1,2018,11412,Request Large Bulky Item Collection,1100
+5,2019,11412,Request Large Bulky Item Collection,646
+rnum,year,incident_zip,complaint_type,incident_count
+4,2010,11413,Street Light Condition,839
+3,2015,11413,Street Condition,866
+1,2018,11413,Request Large Bulky Item Collection,1661
+5,2018,11413,Street Condition,810
+2,2019,11413,Request Large Bulky Item Collection,1119
+4,2010,11414,Street Light Condition,794
+rnum,year,incident_zip,complaint_type,incident_count
+5,2014,11414,Sewer,792
+2,2017,11414,Request Large Bulky Item Collection,1268
+1,2018,11414,Request Large Bulky Item Collection,2595
+3,2019,11414,Request Large Bulky Item Collection,831
+2,2015,11415,Noise - Residential,773
+rnum,year,incident_zip,complaint_type,incident_count
+1,2016,11415,HEAT/HOT WATER,803
+3,2016,11415,Noise - Residential,739
+5,2017,11415,HEAT/HOT WATER,625
+4,2018,11415,HEAT/HOT WATER,669
+3,2016,11416,Blocked Driveway,1140
+5,2016,11416,Noise - Residential,898
+rnum,year,incident_zip,complaint_type,incident_count
+2,2017,11416,Blocked Driveway,1393
+1,2018,11416,Blocked Driveway,1422
+4,2018,11416,Request Large Bulky Item Collection,1057
+5,2016,11417,Blocked Driveway,1092
+3,2017,11417,Request Large Bulky Item Collection,1200
+4,2017,11417,Blocked Driveway,1121
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,11417,Request Large Bulky Item Collection,3054
+2,2018,11417,Blocked Driveway,1253
+4,2016,11418,Blocked Driveway,1228
+2,2017,11418,Blocked Driveway,1425
+3,2017,11418,Illegal Parking,1421
+5,2017,11418,Noise - Residential,1217
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,11418,Blocked Driveway,1458
+5,2014,11419,General Construction/Plumbing,2245
+4,2016,11419,Blocked Driveway,2272
+2,2017,11419,Blocked Driveway,2648
+1,2018,11419,Blocked Driveway,2702
+3,2018,11419,Request Large Bulky Item Collection,2313
+rnum,year,incident_zip,complaint_type,incident_count
+4,2015,11420,Noise - Residential,1757
+5,2016,11420,Noise - Residential,1756
+2,2017,11420,Noise - Residential,1838
+1,2018,11420,Request Large Bulky Item Collection,3518
+3,2018,11420,Blocked Driveway,1787
+rnum,year,incident_zip,complaint_type,incident_count
+3,2016,11421,Blocked Driveway,1662
+1,2017,11421,Blocked Driveway,1849
+4,2017,11421,Noise - Residential,1654
+2,2018,11421,Illegal Parking,1791
+5,2018,11421,Blocked Driveway,1652
+rnum,year,incident_zip,complaint_type,incident_count
+5,2010,11422,Street Light Condition,606
+4,2012,11422,Damaged Tree,638
+3,2015,11422,Street Condition,685
+1,2018,11422,Request Large Bulky Item Collection,1207
+2,2019,11422,Request Large Bulky Item Collection,736
+1,2014,11423,Noise - Residential,840
+4,2014,11423,Street Condition,701
+rnum,year,incident_zip,complaint_type,incident_count
+3,2016,11423,Noise - Residential,756
+2,2017,11423,Noise - Residential,798
+5,2018,11423,Blocked Driveway,657
+5,2011,11426,Damaged Tree,365
+1,2012,11426,Damaged Tree,806
+rnum,year,incident_zip,complaint_type,incident_count
+4,2017,11426,Illegal Parking,369
+2,2018,11426,Request Large Bulky Item Collection,662
+3,2019,11426,Request Large Bulky Item Collection,412
+2,2012,11427,Damaged Tree,655
+5,2015,11427,Street Condition,441
+rnum,year,incident_zip,complaint_type,incident_count
+4,2016,11427,Noise - Residential,498
+3,2017,11427,Noise - Residential,535
+1,2018,11427,Request Large Bulky Item Collection,841
+2,2012,11428,Damaged Tree,564
+4,2014,11428,Noise - Residential,518
+5,2015,11428,Street Condition,498
+rnum,year,incident_zip,complaint_type,incident_count
+1,2018,11428,Request Large Bulky Item Collection,778
+3,2018,11428,Noise - Residential,536
+4,2010,11429,Street Light Condition,475
+3,2012,11429,Damaged Tree,532
+5,2014,11429,Noise - Residential,468
+1,2018,11429,Request Large Bulky Item Collection,945
+rnum,year,incident_zip,complaint_type,incident_count
+2,2019,11429,Request Large Bulky Item Collection,620
+1,2010,11430,Taxi Complaint,589
+4,2013,11430,Taxi Complaint,355
+5,2014,11430,Taxi Complaint,355
+2,2015,11430,Taxi Complaint,392
+rnum,year,incident_zip,complaint_type,incident_count
+3,2016,11430,Taxi Complaint,357
+5,2016,11432,HEAT/HOT WATER,1250
+4,2017,11432,Noise - Residential,1255
+2,2018,11432,Noise - Vehicle,1947
+3,2018,11432,Noise,1745
+1,2019,11432,Noise - Vehicle,2034
+rnum,year,incident_zip,complaint_type,incident_count
+3,2016,11433,Blocked Driveway,946
+2,2017,11433,Blocked Driveway,1003
+5,2017,11433,Noise - Residential,911
+1,2018,11433,Blocked Driveway,1104
+4,2018,11433,Noise - Residential,919
+4,2016,11434,Noise - Residential,1090
+rnum,year,incident_zip,complaint_type,incident_count
+5,2017,11434,Blocked Driveway,1054
+1,2018,11434,Request Large Bulky Item Collection,1340
+2,2018,11434,Blocked Driveway,1257
+3,2018,11434,Noise - Residential,1125
+5,2016,11435,Blocked Driveway,1357
+rnum,year,incident_zip,complaint_type,incident_count
+2,2017,11435,Blocked Driveway,1609
+4,2017,11435,Noise - Residential,1435
+1,2018,11435,Noise - Residential,1648
+3,2018,11435,Blocked Driveway,1606
+1,2015,11436,Noise - Residential,758
+4,2016,11436,Noise - Residential,551
+rnum,year,incident_zip,complaint_type,incident_count
+3,2017,11436,Blocked Driveway,557
+2,2018,11436,Noise - Residential,704
+5,2018,11436,Blocked Driveway,548
+4,2012,11691,HEATING,1579
+1,2015,11691,HEAT/HOT WATER,1779
+5,2016,11691,HEAT/HOT WATER,1559
+rnum,year,incident_zip,complaint_type,incident_count
+2,2017,11691,Noise - Residential,1766
+3,2018,11691,Noise - Residential,1633
+3,2010,11692,DHS Advantage - Tenant,474
+5,2012,11692,HEATING,448
+1,2016,11692,Noise - Residential,612
+rnum,year,incident_zip,complaint_type,incident_count
+4,2017,11692,Noise - Residential,448
+2,2018,11692,Request Large Bulky Item Collection,547
+3,2016,11693,Noise - Residential,383
+1,2017,11693,Noise - Residential,454
+5,2017,11693,Illegal Parking,280
+2,2018,11693,Noise - Residential,414
+4,2018,11693,Illegal Parking,282
+rnum,year,incident_zip,complaint_type,incident_count
+4,2013,11694,HEATING,634
+1,2015,11694,HEAT/HOT WATER,724
+3,2017,11694,Illegal Parking,665
+2,2018,11694,Illegal Parking,673
+5,2018,11694,Request Large Bulky Item Collection,573
+rnum,year,incident_zip,complaint_type,incident_count
+2,2012,11697,General Construction/Plumbing,547
+1,2013,11697,General Construction/Plumbing,574
+3,2013,11697,Forensic Engineering,151
+4,2014,11697,Electrical,130
+5,2015,11697,Construction,120
