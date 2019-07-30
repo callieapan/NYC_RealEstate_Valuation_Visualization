@@ -23,11 +23,13 @@ def generate_metrics(spark, input_file):
     SELECT year, incident_zip, AVG(job_time)
     FROM three_one_one
     GROUP BY 1, 2
+    ORDER BY 1, 3 DESC
     """)
   average_completion_time_by_incident = spark.sql("""
     SELECT year, incident_zip, complaint_type, AVG(job_time)
     FROM three_one_one
     GROUP BY 1, 2, 3
+    ORDER BY 1, 2, 3 DESC
     """)
 
   incidents_per_zip.write.csv('incidents_per_zip', header = True)
