@@ -61,6 +61,7 @@ def csv_to_parquet(spark, input_file, output_file):
   csv = csv.withColumn('job_time', f.when(csv.created_ts > csv.closed_ts, (csv.created_ts - csv.closed_ts)/ SECONDS_PER_DAY)\
                                     .otherwise((csv.closed_ts - csv.created_ts)/ SECONDS_PER_DAY))
   csv = csv.withColumn('year', f.year('created_date'))
+  csv = csv.withColumn('closed_year', f.year('closed_date'))
 
   print('{} | Standardizing city names'.format(dt.datetime.now()))
   csv = csv.withColumn('city', f.regexp_replace(f.lower(f.col('city')), r'\s',''))
@@ -74,6 +75,7 @@ def csv_to_parquet(spark, input_file, output_file):
   columnsToDrop = ['location', 'x_coordinate_state_plane', 'y_coordinate_state_plane', 'resolution_action_updated_date', 'community_board',
                     'bbl', 'road_ramp', 'closed_ts', 'created_ts']
   csv = csv.drop(*columnsToDrop)
+  csv = csv.filter(x.closed_year < 2010)
   print('Time elapsed: {}'.format(dt.datetime.now() - start_time))
 
   print('{} | Repartitioning dataframe: {}'.format(dt.datetime.now(), dt.datetime.now() - start_time))
