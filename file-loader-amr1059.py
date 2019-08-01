@@ -75,7 +75,7 @@ def csv_to_parquet(spark, input_file, output_file):
   columnsToDrop = ['location', 'x_coordinate_state_plane', 'y_coordinate_state_plane', 'resolution_action_updated_date', 'community_board',
                     'bbl', 'road_ramp', 'closed_ts', 'created_ts']
   csv = csv.drop(*columnsToDrop)
-  csv = csv.filter(csv.closed_year > 2010)
+  csv = csv.filter(csv.closed_year >= 2010)
   print('Time elapsed: {}'.format(dt.datetime.now() - start_time))
 
   print('{} | Repartitioning dataframe: {}'.format(dt.datetime.now(), dt.datetime.now() - start_time))
