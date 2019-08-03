@@ -39,7 +39,9 @@ NYC_ZIPCODES = [10178, 10270, 10271, 10278, 10279, 10280, 10281, 10282, 10301, 1
                 11226, 10199, 11228, 11229, 11230, 11231, 11232, 11233, 11234, 11235,
                 11236, 11237, 11238, 11239, 11241, 11242, 11243, 11249, 11252, 11256]
 
-
+# there is around 0.5% of all rows where these values are swapped, i.e. closed_time occurs before created_at
+# operating under the assumption this is clerical/human error and correcting order of operations accordingly
+ 
 def csv_to_parquet(spark, input_file, output_file):
   start_time = dt.datetime.now()
   print('{} | Reading file: {}'.format(start_time, os.path.basename(input_file)))
@@ -52,9 +54,14 @@ def csv_to_parquet(spark, input_file, output_file):
   print('{} | Converting date string to timestamp'.format(dt.datetime.now()))
   csv = csv.withColumn('created_date', f.to_timestamp('created_date', 'MM/dd/yyyy hh:mm:ss aa'))
   csv = csv.withColumn('closed_date', f.to_timestamp('closed_date', 'MM/dd/yyyy hh:mm:ss aa'))
-  csv = csv.withColumn('job_time', (f.unix_timestamp('closed_date', 'MM/dd/yyyy hh:mm:ss aa') - \
-                                    f.unix_timestamp('created_date', 'MM/dd/yyyy hh:mm:ss aa'))/ SECONDS_PER_DAY)
+  csv = csv.withColumn('closed_ts', f.unix_timestamp('closed_date', 'MM/dd/yyyy hh:mm:ss aa'))
+  csv = csv.withColumn('created_ts', f.unix_timestamp('created_date', 'MM/dd/yyyy hh:mm:ss aa'))
+  # there is around 0.5% of all rows where these values are swapped, i.e. closed_time occurs before created_at
+  # operating under the assumption this is clerical/human error and correcting order of operations accordingly
+  csv = csv.withColumn('job_time', f.when(csv.created_ts > csv.closed_ts, (csv.created_ts - csv.closed_ts)/ SECONDS_PER_DAY)\
+                                    .otherwise((csv.closed_ts - csv.created_ts)/ SECONDS_PER_DAY))
   csv = csv.withColumn('year', f.year('created_date'))
+  csv = csv.withColumn('closed_year', f.year('closed_date'))
 
   print('{} | Standardizing city names'.format(dt.datetime.now()))
   csv = csv.withColumn('city', f.regexp_replace(f.lower(f.col('city')), r'\s',''))
@@ -66,8 +73,9 @@ def csv_to_parquet(spark, input_file, output_file):
 
   print('{} | Dropping columns'.format(dt.datetime.now()))
   columnsToDrop = ['location', 'x_coordinate_state_plane', 'y_coordinate_state_plane', 'resolution_action_updated_date', 'community_board',
-                    'bbl', 'road_ramp']
+                    'bbl', 'road_ramp', 'closed_ts', 'created_ts']
   csv = csv.drop(*columnsToDrop)
+  csv = csv.filter(csv.closed_year >= 2010)
   print('Time elapsed: {}'.format(dt.datetime.now() - start_time))
 
   print('{} | Repartitioning dataframe: {}'.format(dt.datetime.now(), dt.datetime.now() - start_time))

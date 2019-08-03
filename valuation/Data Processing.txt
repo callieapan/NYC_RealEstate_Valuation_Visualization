@@ -70,7 +70,7 @@ FROM merged_yrs')
 growth.createOrReplaceTempView('growth')
 
 avg_growth=spark.sql('select BBLE, FULLVAL_2010, FULLVAL_2011, FULLVAL_2012, FULLVAL_2013, FULLVAL_2014, FULLVAL_2015, FULLVAL_2016, \
-FULLVAL_2017, FULLVAL_2018, \
+FULLVAL_2017, FULLVAL_2018, 10_11_growth, 11_12_growth, 12_13_growth, 13_14_growth, 14_15_growth, 15_16_growth, 16_17_growth, 17_18_growth, \
 (IFNULL(10_11_growth,0)+IFNULL(11_12_growth,0)+IFNULL(12_13_growth,0)+IFNULL(13_14_growth,0)+IFNULL(14_15_growth,0)+IFNULL(15_16_growth,0)+\
 IFNULL(16_17_growth,0)+IFNULL(17_18_growth,0))/(10_11_countnotnull+11_12_countnotnull\
 +12_13_countnotnull+13_14_countnotnull+14_15_countnotnull+15_16_countnotnull+16_17_countnotnull+17_18_countnotnull) growth_avg FROM growth')
@@ -101,7 +101,23 @@ growth_wzip=spark.sql('select growth_rate.BBLE, zip_unique.BORO, zip_unique.boro
 FROM growth_rate JOIN zip_unique ON growth_rate.BBLE=zip_unique.BBLE')
 growth_wzip.createOrReplaceTempView('growth_wzip')
 
+growth_wzip_yr=spark.sql('SELECT growth_rate.BBLE, zip_unique.BORO, zip_unique.boro_name, zip_unique.POSTCODE, growth_rate.growth_avg, \
+10_11_growth, 11_12_growth, 12_13_growth, 13_14_growth, 14_15_growth, 15_16_growth, 16_17_growth, 17_18_growth \
+FROM growth_rate JOIN zip_unique ON growth_rate.BBLE=zip_unique.BBLE')
+growth_wzip_yr.createOrReplaceTempView('growth_wzip_yr')
+
+growth_byzip_yr=spark.sql('SELECT boro, boro_name, postcode, avg(10_11_growth) 10_11growth, avg(11_12_growth) 11_12growth, \
+avg(12_13_growth) 12_13growth, avg(13_14_growth) 13_14growth, avg(14_15_growth) 14_15growth, \
+avg(15_16_growth) 15_16growth, avg(16_17_growth) 16_17growth, avg(17_18_growth) 17_18growth \
+FROM growth_wzip_yr WHERE postcode!="10103" AND postcode!="11227" AND postcode!="11359" GROUP BY boro, boro_name, postcode')
+growth_byzip_yr.createOrReplaceTempView('growth_byzip_yr')
+
 growth_wzip.write.csv("bble_growth.csv",header="true")
+filetosave=growth_byzip_yr.coalesce(1)
+filetosave.write.csv("bble_growth_yr.csv", header="true")
+
+yearly_data=spark.read.load("bble_growth_yr.csv", format="csv", inferschema="true", header="true")
+yearly_data.createOrReplaceTempView('yearly_data')
 
 cleaned_data=spark.read.load("bble_growth.csv", format="csv", inferschema="true", header="true")
 cleaned_data.createOrReplaceTempView('final_growth')
@@ -144,5 +160,33 @@ spark.sql('SELECT postcode, avg(growth_avg) avg_growth FROM final_growth WHERE g
 +--------+-------------------+
 
 final_data=spark.sql('SELECT postcode, avg(growth_avg) avg_growth FROM final_growth WHERE growth_avg<15 GROUP BY postcode ORDER BY avg_growth DESC')
-final_data.write.csv("valuation_growth_byzip.csv",header="true")
+final_data.createOrReplaceTempView('final_data')
+
+from pyspark.sql.functions import stddev_pop
+from pyspark.sql.functions import percent_rank
+
+spark.sql('select avg(avg_growth) avg, stddev_pop(avg_growth) std_dev from final_data').show()
+mean=spark.sql('SELECT avg(avg_growth) avg from final_data').collect()[0][0]
+std_dev=spark.sql('SELECT stddev_pop(avg_growth) std_dev from final_data').collect()[0][0]
+
+final_wcat_stdev=spark.sql('SELECT postcode, avg_growth, {0} totalzip_mean, {1} totalzip_stddev, \
+CASE WHEN avg_growth<({0}-({1}*2)) THEN "poor" \
+WHEN avg_growth<{0} THEN "fair" WHEN avg_growth>({0}+({1}*2)) THEN "excellent" ELSE "good" END categorization \
+FROM final_data'.format(mean,std_dev))
+
+summary=final_data.summary()
+summary.createOrReplaceTempView("summary")
+per_25=spark.sql('SELECT avg_growth from summary WHERE summary="25%"').collect()[0][0]
+per_50=spark.sql('SELECT avg_growth from summary WHERE summary="50%"').collect()[0][0]
+per_75=spark.sql('SELECT avg_growth from summary WHERE summary="75%"').collect()[0][0]
+
+final_wcat=spark.sql('SELECT postcode, avg_growth, {0} per_25, {1} per_50, {2} per_75, \
+CASE WHEN avg_growth<{0} THEN "poor" WHEN avg_growth<{1} THEN "fair" \
+WHEN avg_growth<{2} THEN "good" ELSE "excellent" END categorization \
+FROM final_data'.format(per_25,per_50,per_75))
+
+final_wcat_tosave=final_wcat.coalesce(1)
+final_wcat_tosave.write.csv("valuation_growth_byzip.csv",header="true")
+
+########RUN OUTSIDE OF PYSPARK
 hfs -getfacl hdfs:/user/bm106/pub/artist_term_large.csv | hfs -setfacl hdfs:/user/ctd299/valuation_growth_byzip.csv
