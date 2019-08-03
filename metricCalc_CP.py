@@ -99,8 +99,8 @@ def makeCat(dfpandas, percdf):
     for c in colist:
         resdf["temp_per"] = resdf[c].rank(pct=True)
         resdf[c+"_cat"] = "poor"
-        resdf[(resdf["temp_per"]>0.25) & resdf["temp_per"]<=0.5)][c+"_cat"] = "fair"
-        resdf[(resdf["temp_per"]>0.5) & resdf["temp_per"]<=0.75)][c+"_cat"] = "good"
+        resdf[(resdf["temp_per"]>0.25) & (resdf["temp_per"]<=0.5)][c+"_cat"] = "fair"
+        resdf[(resdf["temp_per"]>0.5) & (resdf["temp_per"]<=0.75)][c+"_cat"] = "good"
         resdf[(resdf["temp_per"]>0.75)] [c+"_cat"] = "excellent"
 
     resdf = resdf.drop(columns=["temp_per"])
