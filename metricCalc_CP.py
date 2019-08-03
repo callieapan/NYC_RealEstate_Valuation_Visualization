@@ -99,9 +99,9 @@ def makeCat(dfpandas, percdf):
     for c in colist:
         resdf["temp_per"] = resdf[c].rank(pct=True)
         resdf[c+"_cat"] = "poor"
-        resdf[(resdf["temp_per"]>0.25) & (resdf["temp_per"]<=0.5)][c+"_cat"] = "fair"
-        resdf[(resdf["temp_per"]>0.5) & (resdf["temp_per"]<=0.75)][c+"_cat"] = "good"
-        resdf[(resdf["temp_per"]>0.75)] [c+"_cat"] = "excellent"
+        resdf.loc[(resdf["temp_per"]>0.25) & (resdf["temp_per"]<=0.5), c+"_cat"]  = "fair"
+        resdf.loc[(resdf["temp_per"]>0.5) & (resdf["temp_per"]<=0.75), c+"_cat"] = "good"
+        resdf.loc[resdf["temp_per"]>0.75, c+"_cat"] = "excellent"
 
     resdf = resdf.drop(columns=["temp_per"])
    
@@ -121,7 +121,8 @@ def main(spark):
     print(df42pandas.columns)
 
     #calculate by year number of jobs with keyword 
-    keywords = ['modify', 'install', 'renovate','convert', 'restore', 'new', 'remove', 'demolition', 'no_change']
+    #keywords = ['modify', 'install', 'renovate','convert', 'restore', 'new', 'remove', 'demolition', 'no_change']
+    keywords = ['modify', 'install','new', 'demolition', 'no_change']
     dfList = []
     for w in keywords:
         temp = df2.filter(df2["job_descrip_keyword"].contains(w))
@@ -136,7 +137,7 @@ def main(spark):
     print(dfkeyword.head(2))
 
     #merge dfkeywords with the df42pandas (sum intital cost by year and category)
-    dfDOBall = dfkeywords.merge(df42pandas, how="inner", on ="zip1")
+    dfDOBall = dfkeyword.merge(df42pandas, how="inner", on ="zip1")
 
     dfDOBall.to_csv("dfDOBall.csv")
     print('finish write dfDOBall.csv')
