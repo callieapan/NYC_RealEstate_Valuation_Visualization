@@ -58,32 +58,67 @@ def makeaggs(df2):
     print('write file')
     df4.write.csv("hdfs:/user/cp2530/sumcostbyzip_job_type", mode="overwrite")
     print('finish writing sumcostbyzip_job_type in csv')
+    
+    df42 = df2.groupby("zip1" ).pivot("year").agg(F.sum('initial_cost').alias('total cost'))
+    print(df42.show(3))
+    df42pandas = df42.toPandas()
 
-    ##calculate yoy avg cost change by zip code by job type
-    df5=df2.groupby("zip1", "job_type" ).pivot("year").agg(F.avg('initial_cost').alias('avg cost'))
-    print(df5.printSchema())
+    percdf = df42pandas.quantile([0.25, 0.5, 0.75]) #calculate the percentiles
+    df42pandas = makeCat(df42pandas, percdf)
+    print('post make Cat')
+    print(df42pandas.head(3))
+    df42pandas.to_csv("DOBsumcostbyzip.csv")
+    print('finish writing DOBsumcostbyzip in csv')
+    #have to do the quantile grouping in jupyter notebook to separate py file
+    return df42pandas
 
-    df5 = df5.withColumn("delta 2011", F.col('2011') -  F.col('2010'))\
-             .withColumn("delta 2012", F.col('2012') -  F.col('2011'))\
-             .withColumn("delta 2013", F.col('2013') -  F.col('2012'))\
-             .withColumn("delta 2014", F.col('2014') -  F.col('2013'))\
-             .withColumn("delta 2015", F.col('2015') -  F.col('2014'))\
-             .withColumn("delta 2016", F.col('2016') -  F.col('2015'))\
-             .withColumn("delta 2017", F.col('2017') -  F.col('2016'))\
-             .withColumn("delta 2018", F.col('2018') -  F.col('2017'))\
-             .withColumn("delta 2019", F.col('2019') -  F.col('2018'))
 
-    df5.write.csv("hdfs:/user/cp2530/avgcostbyzip_job_type", mode="overwrite")
-    print('finish writing avgcostbyzip_job_type in csv')
+
+
+    # ##calculate yoy avg cost change by zip code by job type - for now we do not need it
+    # df5=df2.groupby("zip1", "job_type" ).pivot("year").agg(F.avg('initial_cost').alias('avg cost'))
+    # print(df5.printSchema())
+
+    # df5 = df5.withColumn("delta 2011", F.col('2011') -  F.col('2010'))\
+    #          .withColumn("delta 2012", F.col('2012') -  F.col('2011'))\
+    #          .withColumn("delta 2013", F.col('2013') -  F.col('2012'))\
+    #          .withColumn("delta 2014", F.col('2014') -  F.col('2013'))\
+    #          .withColumn("delta 2015", F.col('2015') -  F.col('2014'))\
+    #          .withColumn("delta 2016", F.col('2016') -  F.col('2015'))\
+    #          .withColumn("delta 2017", F.col('2017') -  F.col('2016'))\
+    #          .withColumn("delta 2018", F.col('2018') -  F.col('2017'))\
+    #          .withColumn("delta 2019", F.col('2019') -  F.col('2018'))
+
+    # df5.write.csv("hdfs:/user/cp2530/avgcostbyzip_job_type", mode="overwrite")
+    # print('finish writing avgcostbyzip_job_type in csv')
+
+
+def makeCat(dfpandas, percdf):
+    resdf = dfpandas.copy()
+    colist = ["2010","2011","2012","2013","2014", "2015", "2016", "2017", "2018", "2019"]
+    for c in colist:
+        resdf["temp_per"] = resdf[c].rank(pct=True)
+        resdf[c+"_cat"] = "poor"
+        resdf[(resdf["temp_per"]>0.25) & resdf["temp_per"]<=0.5)][c+"_cat"] = "fair"
+        resdf[(resdf["temp_per"]>0.5) & resdf["temp_per"]<=0.75)][c+"_cat"] = "good"
+        resdf[(resdf["temp_per"]>0.75)] [c+"_cat"] = "excellent"
+
+    resdf = resdf.drop(columns=["temp_per"])
+   
+    return resdf
+
+    
+
+
 
 def main(spark):
-    print('in main')
+    
     df =  spark.read.parquet('hdfs:/user/cp2530/DOBcleanzip.parquet')
     #create year column
     df2 = df.withColumn("year", F.year(df["permitted_date"]))
 
-    #makeaggs(df2)
-    
+    df42pandas = makeaggs(df2)
+    print(df42pandas.columns)
 
     #calculate by year number of jobs with keyword 
     keywords = ['modify', 'install', 'renovate','convert', 'restore', 'new', 'remove', 'demolition', 'no_change']
@@ -92,7 +127,7 @@ def main(spark):
         temp = df2.filter(df2["job_descrip_keyword"].contains(w))
         temp = temp.groupby("zip1").pivot("year").agg(F.countDistinct('job_num'))
         tempPanda = temp.toPandas()
-        newcol = ['zip1']+[s+w+"_cnt" for s in tempPanda.columns[1:]]
+        newcol = ['zip1']+[s+"_"+w+"_cnt" for s in tempPanda.columns[1:]]
         tempPanda.columns = newcol
         dfList.append(tempPanda)
         
@@ -100,8 +135,11 @@ def main(spark):
     print(dfkeyword.columns)
     print(dfkeyword.head(2))
 
-    dfkeyword.to_csv("dfkeyword.csv")
-    print('finish write dfkeyword.csv')
+    #merge dfkeywords with the df42pandas (sum intital cost by year and category)
+    dfDOBall = dfkeywords.merge(df42pandas, how="inner", on ="zip1")
+
+    dfDOBall.to_csv("dfDOBall.csv")
+    print('finish write dfDOBall.csv')
 
 if __name__ == "__main__":
 
