@@ -4,11 +4,17 @@ import sys
 import datetime as dt
 from pyspark.sql import SparkSession
 
+'''
+spark-submit 311_metrics_amr1059.py hdfs:/user/amr1059/load_05.parquet
+'''
+
 
 def generate_metrics(spark, input_file):
+  print('{}| Reading file'.format(dt.datetime.now()))
   df = spark.read.parquet(input_file)
   df.createOrReplaceTempView('three_one_one')
 
+  print('{}| Running queries'.format(dt.datetime.now()))
   # headers: year, incident_zip, complaint_type, incident_count
   incidents_per_zip = spark.sql("""
     WITH grouped AS (
@@ -45,11 +51,13 @@ def generate_metrics(spark, input_file):
     order by incident_zip, year
     """)
   average_completion_time_by_incident = average_completion_time_by_incident.drop(*['rnum']) 
-
+  print('{}| Finished running queries'.format(dt.datetime.now()))
   
-  incidents_per_zip.write.parquet('incidents_per_zip')
-  average_completion_time.write.parquet('average_completion_time')
-  average_completion_time_by_incident.write.parquet('average_completion_time_by_incident')
+  print('{}| Writing files to parquet'.format(dt.datetime.now()))
+  incidents_per_zip.write.parquet('incidents_per_zip.parquet')
+  average_completion_time.write.parquet('average_completion_time.parquet')
+  average_completion_time_by_incident.write.parquet('average_completion_time_by_incident.parquet')
+  print('{}| Finished'.format(dt.datetime.now()))
 
 
 if __name__ == "__main__":
