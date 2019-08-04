@@ -4,6 +4,7 @@ pyspark
 data=spark.read.load("cleaned_data_2.csv", format="csv", inferschema="true", header="true")
 data.createOrReplaceTempView('valdata')
 
+#aggregate year over year data for each BBLE key
 trend10_11=spark.sql('SELECT CASE WHEN yr_2010.BBLE is not null THEN yr_2010.BBLE ELSE yr_2011.BBLE END BBLE, \
 yr_2010.FULLVAL FULLVAL_2010, yr_2011.FULLVAL FULLVAL_2011 FROM \
 (SELECT BBLE, FULLVAL from valdata WHERE YEAR="2010/11") yr_2010 FULL OUTER JOIN \
@@ -43,12 +44,14 @@ FULLVAL_2010, FULLVAL_2011, FULLVAL_2012, FULLVAL_2013, FULLVAL_2014, FULLVAL_20
 FROM trend10_11_12_13 FULL OUTER JOIN trend14_15_16_17 ON trend10_11_12_13.BBLE=trend14_15_16_17.BBLE')
 trend10_17.createOrReplaceTempView('trend10_17')
 
+#create final table of BBLE with year over year data
 merged_yrs=spark.sql('SELECT CASE WHEN trend10_17.BBLE is not null THEN trend10_17.BBLE ELSE yr_2018.BBLE END BBLE, \
 FULLVAL_2010, FULLVAL_2011, FULLVAL_2012, FULLVAL_2013, FULLVAL_2014, FULLVAL_2015, FULLVAL_2016, FULLVAL_2017, yr_2018.FULLVAL FULLVAL_2018 \
 FROM trend10_17 FULL OUTER JOIN (SELECT BBLE, FULLVAL from valdata WHERE YEAR="2018/19") yr_2018 \
 ON trend10_17.BBLE=yr_2018.BBLE')
 merged_yrs.createOrReplaceTempView('merged_yrs')
 
+#calculate year over year growth
 growth=spark.sql('SELECT BBLE, FULLVAL_2010, FULLVAL_2011, FULLVAL_2012, FULLVAL_2013, FULLVAL_2014, FULLVAL_2015, FULLVAL_2016, FULLVAL_2017, FULLVAL_2018, \
 CASE WHEN (FULLVAL_2010 is not null AND FULLVAL_2011 is not null) THEN ((FULLVAL_2011-FULLVAl_2010)/FULLVAL_2010) ELSE null END 10_11_growth, \
 CASE WHEN (FULLVAL_2011 is not null AND FULLVAL_2012 is not null) THEN ((FULLVAL_2012-FULLVAl_2011)/FULLVAL_2011) ELSE null END 11_12_growth, \
@@ -69,6 +72,7 @@ CASE WHEN (FULLVAL_2017 is not null AND FULLVAL_2018 is not null) THEN 1 ELSE 0 
 FROM merged_yrs')
 growth.createOrReplaceTempView('growth')
 
+#calculate year over year growth averages per BBLE
 avg_growth=spark.sql('select BBLE, FULLVAL_2010, FULLVAL_2011, FULLVAL_2012, FULLVAL_2013, FULLVAL_2014, FULLVAL_2015, FULLVAL_2016, \
 FULLVAL_2017, FULLVAL_2018, 10_11_growth, 11_12_growth, 12_13_growth, 13_14_growth, 14_15_growth, 15_16_growth, 16_17_growth, 17_18_growth, \
 (IFNULL(10_11_growth,0)+IFNULL(11_12_growth,0)+IFNULL(12_13_growth,0)+IFNULL(13_14_growth,0)+IFNULL(14_15_growth,0)+IFNULL(15_16_growth,0)+\
@@ -76,6 +80,7 @@ IFNULL(16_17_growth,0)+IFNULL(17_18_growth,0))/(10_11_countnotnull+11_12_countno
 +12_13_countnotnull+13_14_countnotnull+14_15_countnotnull+15_16_countnotnull+16_17_countnotnull+17_18_countnotnull) growth_avg FROM growth')
 avg_growth.createOrReplaceTempView('growth_rate')
 
+#convert boro codes to names, year to int version
 bble_zip=spark.sql('SELECT BBLE, POSTCODE, BORO, CASE WHEN BORO=1 THEN "Manhattan" \
 WHEN BORO=2 THEN "Bronx" \
 WHEN BORO=3 THEN "Brooklyn" \
@@ -92,101 +97,103 @@ WHEN YEAR="2017/18" THEN 2017 \
 WHEN YEAR="2018/19" THEN 2018 END year_int FROM valdata')
 bble_zip.createOrReplaceTempView('bble_zip')
 
+#over time same BBLE key could have more than 1 zip value, use most recent zip categorization so each BBLE has 1 growth record only
 zip_unique=spark.sql('SELECT bble_zip.BBLE, bble_zip.POSTCODE, bble_zip.BORO, bble_zip.boro_name \
 FROM (SELECT BBLE, max(year_int) max_year FROM bble_zip GROUP BY BBLE) x \
 LEFT JOIN bble_zip ON x.BBLE=bble_zip.BBLE AND bble_zip.year_int=x.max_year')
 zip_unique.createOrReplaceTempView('zip_unique')
 
+#get BBLE level growth by zip
 growth_wzip=spark.sql('select growth_rate.BBLE, zip_unique.BORO, zip_unique.boro_name, zip_unique.POSTCODE, growth_rate.growth_avg \
 FROM growth_rate JOIN zip_unique ON growth_rate.BBLE=zip_unique.BBLE')
-growth_wzip.createOrReplaceTempView('growth_wzip')
+growth_wzip.createOrReplaceTempView('final_growth')
 
+#get BBLE growth by zip and year
 growth_wzip_yr=spark.sql('SELECT growth_rate.BBLE, zip_unique.BORO, zip_unique.boro_name, zip_unique.POSTCODE, growth_rate.growth_avg, \
 10_11_growth, 11_12_growth, 12_13_growth, 13_14_growth, 14_15_growth, 15_16_growth, 16_17_growth, 17_18_growth \
 FROM growth_rate JOIN zip_unique ON growth_rate.BBLE=zip_unique.BBLE')
 growth_wzip_yr.createOrReplaceTempView('growth_wzip_yr')
 
-growth_byzip_yr=spark.sql('SELECT boro, boro_name, postcode, avg(10_11_growth) 10_11growth, avg(11_12_growth) 11_12growth, \
+#get zip-level yearly growth
+yearly_data=spark.sql('SELECT boro, boro_name, postcode, avg(10_11_growth) 10_11growth, avg(11_12_growth) 11_12growth, \
 avg(12_13_growth) 12_13growth, avg(13_14_growth) 13_14growth, avg(14_15_growth) 14_15growth, \
 avg(15_16_growth) 15_16growth, avg(16_17_growth) 16_17growth, avg(17_18_growth) 17_18growth \
 FROM growth_wzip_yr WHERE postcode!="10103" AND postcode!="11227" AND postcode!="11359" GROUP BY boro, boro_name, postcode')
-growth_byzip_yr.createOrReplaceTempView('growth_byzip_yr')
-
-growth_wzip.write.csv("bble_growth.csv",header="true")
-filetosave=growth_byzip_yr.coalesce(1)
-filetosave.write.csv("bble_growth_yr.csv", header="true")
-
-yearly_data=spark.read.load("bble_growth_yr.csv", format="csv", inferschema="true", header="true")
 yearly_data.createOrReplaceTempView('yearly_data')
 
-cleaned_data=spark.read.load("bble_growth.csv", format="csv", inferschema="true", header="true")
-cleaned_data.createOrReplaceTempView('final_growth')
-
-spark.sql('SELECT boro, boro_name, AVG(growth_avg) avg_growth FROM final_growth WHERE growth_avg<15 GROUP BY boro, boro_name ORDER BY avg_growth DESC').show()
-+----+-------------+--------------------+                                       
-|boro|    boro_name|          avg_growth|
-+----+-------------+--------------------+
-|   3|     Brooklyn| 0.09172618816721095|
-|   1|    Manhattan| 0.08367464728639183|
-|   4|       Queens| 0.06268251498284837|
-|   2|        Bronx|0.053923869445725685|
-|   5|Staten Island| 0.04721909631250475|
-+----+-------------+--------------------+
-
-spark.sql('SELECT postcode, avg(growth_avg) avg_growth FROM final_growth WHERE growth_avg<15 GROUP BY postcode ORDER BY avg_growth DESC').show()
-+--------+-------------------+                                                  
-|postcode|         avg_growth|
-+--------+-------------------+
-|   11249| 0.2853149888541515|
-|   11354| 0.2632505401121272|
-|   11101| 0.2570330221861353|
-|   10039|0.25148333130134204|
-|   11238| 0.1827217635682081|
-|   11201|0.15431844605445047|
-|   11205|0.14997851573883472|
-|   11222|0.14970528361140104|
-|   11239|0.14700196120512302|
-|   11216| 0.1397543518607684|
-|   10037|0.13804073112783705|
-|   10011|0.13646951055952744|
-|   10454| 0.1351298747998021|
-|   10010|0.13407540466631648|
-|   11231|0.13362300618026776|
-|   11211|0.13301088449380008|
-|   11206|  0.132991640320925|
-|   10036|0.13120443496240217|
-|   10451|0.12831868445152272|
-|   10032| 0.1261960270174591|
-+--------+-------------------+
-
-final_data=spark.sql('SELECT postcode, avg(growth_avg) avg_growth FROM final_growth WHERE growth_avg<15 GROUP BY postcode ORDER BY avg_growth DESC')
+#get zip-level growth for entire time period
+final_data=spark.sql('SELECT boro, boro_name, postcode, avg(growth_avg) avg_growth FROM final_growth WHERE growth_avg<15 \
+GROUP BY boro, boro_name, postcode ORDER BY avg_growth DESC')
 final_data.createOrReplaceTempView('final_data')
 
+'''
+by zip categorization version using standard dev from mean, not used settled on percentile instead
 from pyspark.sql.functions import stddev_pop
 from pyspark.sql.functions import percent_rank
-
-spark.sql('select avg(avg_growth) avg, stddev_pop(avg_growth) std_dev from final_data').show()
 mean=spark.sql('SELECT avg(avg_growth) avg from final_data').collect()[0][0]
 std_dev=spark.sql('SELECT stddev_pop(avg_growth) std_dev from final_data').collect()[0][0]
-
 final_wcat_stdev=spark.sql('SELECT postcode, avg_growth, {0} totalzip_mean, {1} totalzip_stddev, \
 CASE WHEN avg_growth<({0}-({1}*2)) THEN "poor" \
 WHEN avg_growth<{0} THEN "fair" WHEN avg_growth>({0}+({1}*2)) THEN "excellent" ELSE "good" END categorization \
 FROM final_data'.format(mean,std_dev))
+'''
 
+#by zip categorization version using percentiles
 summary=final_data.summary()
 summary.createOrReplaceTempView("summary")
 per_25=spark.sql('SELECT avg_growth from summary WHERE summary="25%"').collect()[0][0]
 per_50=spark.sql('SELECT avg_growth from summary WHERE summary="50%"').collect()[0][0]
 per_75=spark.sql('SELECT avg_growth from summary WHERE summary="75%"').collect()[0][0]
-
-final_wcat=spark.sql('SELECT postcode, avg_growth, {0} per_25, {1} per_50, {2} per_75, \
+final_wcat=spark.sql('SELECT boro, boro_name,postcode, avg_growth, \
 CASE WHEN avg_growth<{0} THEN "poor" WHEN avg_growth<{1} THEN "fair" \
 WHEN avg_growth<{2} THEN "good" ELSE "excellent" END categorization \
 FROM final_data'.format(per_25,per_50,per_75))
 
+#save by zip categorization using percentiles
 final_wcat_tosave=final_wcat.coalesce(1)
 final_wcat_tosave.write.csv("valuation_growth_byzip.csv",header="true")
 
-########RUN OUTSIDE OF PYSPARK
-hfs -getfacl hdfs:/user/bm106/pub/artist_term_large.csv | hfs -setfacl hdfs:/user/ctd299/valuation_growth_byzip.csv
+#by zip and by year categorization using percentiles
+summary_yr=yearly_data.summary()
+summary_yr.createOrReplaceTempView("summary_yr")
+growth_1011_per25=spark.sql('SELECT 10_11growth from summary_yr WHERE summary="25%"').collect()[0][0]
+growth_1011_per50=spark.sql('SELECT 10_11growth from summary_yr WHERE summary="50%"').collect()[0][0]
+growth_1011_per75=spark.sql('SELECT 10_11growth from summary_yr WHERE summary="75%"').collect()[0][0]
+growth_1112_per25=spark.sql('SELECT 11_12growth from summary_yr WHERE summary="25%"').collect()[0][0]
+growth_1112_per50=spark.sql('SELECT 11_12growth from summary_yr WHERE summary="50%"').collect()[0][0]
+growth_1112_per75=spark.sql('SELECT 11_12growth from summary_yr WHERE summary="75%"').collect()[0][0]
+growth_1213_per25=spark.sql('SELECT 12_13growth from summary_yr WHERE summary="25%"').collect()[0][0]
+growth_1213_per50=spark.sql('SELECT 12_13growth from summary_yr WHERE summary="50%"').collect()[0][0]
+growth_1213_per75=spark.sql('SELECT 12_13growth from summary_yr WHERE summary="75%"').collect()[0][0]
+growth_1314_per25=spark.sql('SELECT 13_14growth from summary_yr WHERE summary="25%"').collect()[0][0]
+growth_1314_per50=spark.sql('SELECT 13_14growth from summary_yr WHERE summary="50%"').collect()[0][0]
+growth_1314_per75=spark.sql('SELECT 13_14growth from summary_yr WHERE summary="75%"').collect()[0][0]
+growth_1415_per25=spark.sql('SELECT 14_15growth from summary_yr WHERE summary="25%"').collect()[0][0]
+growth_1415_per50=spark.sql('SELECT 14_15growth from summary_yr WHERE summary="50%"').collect()[0][0]
+growth_1415_per75=spark.sql('SELECT 14_15growth from summary_yr WHERE summary="75%"').collect()[0][0]
+growth_1516_per25=spark.sql('SELECT 15_16growth from summary_yr WHERE summary="25%"').collect()[0][0]
+growth_1516_per50=spark.sql('SELECT 15_16growth from summary_yr WHERE summary="50%"').collect()[0][0]
+growth_1516_per75=spark.sql('SELECT 15_16growth from summary_yr WHERE summary="75%"').collect()[0][0]
+growth_1617_per25=spark.sql('SELECT 16_17growth from summary_yr WHERE summary="25%"').collect()[0][0]
+growth_1617_per50=spark.sql('SELECT 16_17growth from summary_yr WHERE summary="50%"').collect()[0][0]
+growth_1617_per75=spark.sql('SELECT 16_17growth from summary_yr WHERE summary="75%"').collect()[0][0]
+growth_1718_per25=spark.sql('SELECT 17_18growth from summary_yr WHERE summary="25%"').collect()[0][0]
+growth_1718_per50=spark.sql('SELECT 17_18growth from summary_yr WHERE summary="50%"').collect()[0][0]
+growth_1718_per75=spark.sql('SELECT 17_18growth from summary_yr WHERE summary="75%"').collect()[0][0]
+final_wcat_yr=spark.sql('SELECT boro, boro_name, postcode, 10_11growth, \
+CASE WHEN 10_11growth<{0} THEN "poor" WHEN 10_11growth<{1} THEN "fair" WHEN 10_11growth<{2} THEN "good" ELSE "excellent" END 10_11_cat, \
+11_12growth, CASE WHEN 11_12growth<{3} THEN "poor" WHEN 11_12growth<{4} THEN "fair" WHEN 11_12growth<{5} THEN "good" ELSE "excellent" END 11_12_cat, \
+12_13growth, CASE WHEN 12_13growth<{6} THEN "poor" WHEN 12_13growth<{7} THEN "fair" WHEN 12_13growth<{8} THEN "good" ELSE "excellent" END 12_13_cat, \
+13_14growth, CASE WHEN 13_14growth<{9} THEN "poor" WHEN 13_14growth<{10} THEN "fair" WHEN 13_14growth<{11} THEN "good" ELSE "excellent" END 13_14_cat, \
+14_15growth, CASE WHEN 14_15growth<{12} THEN "poor" WHEN 14_15growth<{13} THEN "fair" WHEN 14_15growth<{14} THEN "good" ELSE "excellent" END 14_15_cat, \
+15_16growth, CASE WHEN 15_16growth<{15} THEN "poor" WHEN 15_16growth<{16} THEN "fair" WHEN 15_16growth<{17} THEN "good" ELSE "excellent" END 15_16_cat, \
+16_17growth, CASE WHEN 16_17growth<{18} THEN "poor" WHEN 16_17growth<{19} THEN "fair" WHEN 16_17growth<{20} THEN "good" ELSE "excellent" END 16_17_cat, \
+17_18growth, CASE WHEN 17_18growth<{21} THEN "poor" WHEN 17_18growth<{22} THEN "fair" WHEN 17_18growth<{23} THEN "good" ELSE "excellent" END 17_18_cat \
+from yearly_data'.format(growth_1011_per25,growth_1011_per50,growth_1011_per75,growth_1112_per25,growth_1112_per50,growth_1112_per75, \
+growth_1213_per25,growth_1213_per50,growth_1213_per75,growth_1314_per25,growth_1314_per50,growth_1314_per75,growth_1415_per25, growth_1415_per50, \
+growth_1415_per75,growth_1516_per25,growth_1516_per50,growth_1516_per75,growth_1617_per25,growth_1617_per50,growth_1617_per75, \
+growth_1718_per25,growth_1718_per50,growth_1718_per75))
+
+#save by zip and by year categorization using percentiles
+final_yr_wcat_tosave=final_wcat_yr.coalesce(1)
+final_yr_wcat_tosave.write.csv("valuation_yearly_growth_byzip.csv",header="true")
