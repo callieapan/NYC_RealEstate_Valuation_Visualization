@@ -5,6 +5,9 @@ Real Estate Valuation data from Open Data NYC, data has been downloaded from the
 Original dataset can be accessed at hdfs:/user/ctd299/Property_Valuation_and_Assessment_Data.csv
 
 "Valuation_Cleaning.txt" contains commands to launch REPL, clean the data and save to a new file at hdfs:/user/ctd299/cleaned_data_2.csv
+"Valuation Processing.txt" contains commands to launch REPL, calculate year over year valuation growth and categorizations, and save 2 files:
+1) Zip code average yearly valuation growth over entire time range hdfs:/user/ctd299/valuation_growth_byzip.csv
+2) Zip code average yearly valuation growth for each year in dataset hdfs:/user/ctd299/valuation_yearly_growth_byzip.csv
 
 Dataset #2
 
