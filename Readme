@@ -1,7 +1,10 @@
 README file for Using Data to Drive Decisions related to New York Real Estate 
 
 Dataset #1
-Real Estate Valuation data from Open Data NYC
+Real Estate Valuation data from Open Data NYC, data has been downloaded from the web and uploaded to HDFS.
+Original dataset can be accessed at hdfs:/user/ctd299/Property_Valuation_and_Assessment_Data.csv
+
+"Valuation_Cleaning.txt" contains commands to launch REPL, clean the data and save to a new file at hdfs:/user/ctd299/cleaned_data_2.csv
 
 Dataset #2
 
