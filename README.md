@@ -1,6 +1,6 @@
-README file for Using Data to Drive Decisions related to New York Real Estate 
+# Using Data to Drive Decisions related to New York Real Estate 
 
-Dataset #1
+## Dataset #1
 Real Estate Valuation data from Open Data NYC, data has been downloaded from the web and uploaded to HDFS.
 Original dataset can be accessed at hdfs:/user/ctd299/Property_Valuation_and_Assessment_Data.csv
 
@@ -9,10 +9,13 @@ Original dataset can be accessed at hdfs:/user/ctd299/Property_Valuation_and_Ass
 1) Zip code average yearly valuation growth over entire time range hdfs:/user/ctd299/valuation_growth_byzip.csv
 2) Zip code average yearly valuation growth for each year in dataset hdfs:/user/ctd299/valuation_yearly_growth_byzip.csv
 
-Dataset #2
+## Dataset #2
+311 Service Requests 2010 to Present (sourced from Open Data NYC-- available at https://nycopendata.socrata.com/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9)
 
 
-Dataset #3
+
+
+## Dataset #3
 New Construction Permit Application Data from Open Data NYC
 script files:
 readfile_CP.py
