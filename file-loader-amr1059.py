@@ -2,7 +2,6 @@
 alias spark-submit='PYSPARK_PYTHON=$(which python) spark-submit'
 such that we run the following 
 spark-submit BDAD-loader.py file:///scratch/amr1059/311_Service_Requests_from_2010_to_Present.csv load_01.parquet
-
 '''
 
 import os
@@ -14,6 +13,7 @@ import pyspark.sql.types as t
 from pyspark.sql import SparkSession
 
 SECONDS_PER_DAY = 86400
+# sourced from https://www.nycbynatives.com/nyc_info/new_york_city_zip_codes.php
 NYC_ZIPCODES = [10178, 10270, 10271, 10278, 10279, 10280, 10281, 10282, 10301, 10302,
                 10303, 10304, 10305, 10306, 10307, 10308, 10309, 10310, 10311, 10312, 
                 10314, 11351, 11354, 11355, 11356, 11357, 11358, 11359, 11360, 11361, 
@@ -39,8 +39,6 @@ NYC_ZIPCODES = [10178, 10270, 10271, 10278, 10279, 10280, 10281, 10282, 10301, 1
                 11226, 10199, 11228, 11229, 11230, 11231, 11232, 11233, 11234, 11235,
                 11236, 11237, 11238, 11239, 11241, 11242, 11243, 11249, 11252, 11256]
 
-# there is around 0.5% of all rows where these values are swapped, i.e. closed_time occurs before created_at
-# operating under the assumption this is clerical/human error and correcting order of operations accordingly
  
 def csv_to_parquet(spark, input_file, output_file):
   start_time = dt.datetime.now()
