@@ -1,0 +1,385 @@
+module load python/gnu/3.6.5
+module load spark/2.4.0
+pyspark
+data=spark.read.load("Property_Valuation_and_Assessment_Data.csv", format="csv", inferschema="true", header="true")
+data.createOrReplaceTempView('valdata')
+spark.sql('SELECT BBLE FROM valdata LIMIT 20').show()
++----------+                                                                    
+|      BBLE|
++----------+
+|1000151218|
+|1000161058|
+|1000161214|
+|1000161426|
+|1000161495|
+|1000161828|
+|1000161883|
+|1000161934|
+|1000162113|
+|1000162250|
+|1000162309|
+|1000162493|
+|1000162650|
+|1000162686|
+|1000162729|
+|1000163241|
+|1000163275|
+|1000163496|
+|1000164081|
+|1000164398|
++----------+
+
+I could see that the IDs seemed to all have 10 digits, so I tried:
+spark.sql('SELECT distinct length(BBLE) FROM valdata LIMIT 50').show()
++------------+                                                                  
+|length(BBLE)|
++------------+
+|          10|
+|          11|
++------------+
+
+Then I pulled up the examples with 11:
+spark.sql('select DISTINCT BBLE FROM valdata where length(BBLE)=11').show()
++-----------+                                                                   
+|       BBLE|
++-----------+
+|1000870001F|
+|2025390195E|
+|2028720400E|
+|2037320073E|
+|2054170050E|
+|3001720109E|
+|4005570003E|
+|4025540055E|
+|4124580027E|
+|5001850386E|
+|5001010020E|
+|5016200081E|
+|5026200330E|
+|5028440119E|
+|5032310040E|
+|5054420191E|
+|5056130219E|
+|5056130073E|
+|5069770245E|
+|5070670117E|
++-----------+
+
+It looked like they had standard BBLEs with 1 additional char.  Thus I tried looking at the counts for key length of 11 and found these represented <1% of the total dataset:
+spark.sql('select length(BBLE) length,COUNT(*) FROM valdata group by length').show()
++------+--------+                                                               
+|length|count(1)|
++------+--------+
+|    10| 9804549|
+|    11|   41308|
++------+--------+
+
+
+Digging further into 1 example, I found that these records were related to easements and decided to filter these out in the cleaning stage:
+spark.sql('SELECT BBLE, STADDR, owner, block, lot, easement,taxclass,stories,fullval from valdata where BBLE like "1000870001%" AND YEAR="2018/19"').show()
++-----------+------------+---------------+-----+---+--------+--------+-------+--------+
+|       BBLE|      STADDR|          owner|block|lot|easement|taxclass|stories| fullval|
++-----------+------------+---------------+-----+---+--------+--------+-------+--------+
+| 1000870001|209 BROADWAY|ST PAULS CHURCH|   87|  1|    null|       4|      1|53493000|
+|1000870001E|    BROADWAY|    NYC TRANSIT|   87|  1|       E|       3|   null|       0|
+|1000870001F|    BROADWAY|    NYC TRANSIT|   87|  1|       F|       3|   null|       0|
++-----------+------------+---------------+-----+---+--------+--------+-------+--------+
+
+For BORO values were numbers between 1-5 as indicated in the data dictionary so I did not see any need for cleaning:
+spark.sql('SELECT distinct boro from valdata').show()
++----+                                                                          
+|boro|
++----+
+|   1|
+|   3|
+|   5|
+|   4|
+|   2|
++----+
+
+For BLOCK values appeared normal and were of type int:
+spark.sql('SELECT distinct block from valdata').show()
++-----+                                                                         
+|block|
++-----+
+|  148|
+|  463|
+|  471|
+|  496|
+|  833|
+| 1088|
+| 1238|
+| 1342|
+| 1580|
+| 1645|
+| 1829|
+| 1959|
+| 2122|
+| 2142|
+| 2366|
+| 2866|
+| 3175|
+| 3749|
+| 3794|
+| 3918|
++-----+
+
+For LOT values appeared normal and were of type int:
+spark.sql('SELECT distinct lot from valdata').show()
++----+                                                                          
+| lot|
++----+
+|1238|
+|1342|
+|1088|
+|1580|
+|1591|
+|1829|
+|2122|
+|2659|
+|3749|
+|3794|
+|4101|
+|5156|
+|5300|
+|5518|
+|7240|
+|7253|
+|8086|
+|1645|
+|1959|
+| 148|
++----+
+
+For TAXCLASS values were not numbers between 1-4 as indicated in the data dictionary:
+spark.sql('SELECT distinct taxclass from valdata').show()
++--------+                                                                      
+|taxclass|
++--------+
+|      1A|
+|       3|
+|      1C|
+|    null|
+|      B2|
+|      2A|
+|      1D|
+|      R4|
+|      B1|
+|      2B|
+|       1|
+|      1B|
+|      S2|
+|       4|
+|      2C|
+|      S1|
+|       2|
++--------+
+
+Thus I checked the counts and determined in the cleaning stage i found filter out the ones with <=20:
+spark.sql('SELECT taxclass, count(*) count from valdata group by taxclass').show()
++--------+-------+                                                              
+|taxclass|  count|
++--------+-------+
+|      1A| 200623|
+|       3|  41487|
+|      1C|  11503|
+|    null|      5|
+|      B2|     20|
+|      2A| 364657|
+|      1D|    261|
+|      R4|      3|
+|      B1|      5|
+|      2B| 126768|
+|       1|5954051|
+|      1B| 210844|
+|      S2|      3|
+|       4| 985589|
+|      2C| 122138|
+|      S1|      9|
+|       2|1827891|
++--------+-------+
+
+For LTFRONT the data dictionary did not list what unit this was in, so I couldn't make much of it:
++-------+                                                                       
+|ltfront|
++-------+
+|    496|
+|    148|
+|    463|
+|    471|
+|    833|
+|   1959|
+|    540|
+|   1460|
+|    243|
+|    737|
+|   1084|
+|    392|
+|    623|
+|    858|
+|   2999|
+|   1483|
+|   2811|
+|     31|
+|   3000|
+|    516|
++-------+
+
+The same was the case for LTDEPTH I didn't know what unit this was in so it was not useful:
+spark.sql('SELECT distinct ltdepth from valdata').show()
++-------+                                                                       
+|ltdepth|
++-------+
+|    148|
+|    471|
+|    463|
+|    496|
+|    833|
+|   1580|
+|   2866|
+|   4900|
+|   2366|
+|    392|
+|    243|
+|    540|
+|    623|
+|    858|
+|   1990|
+|    737|
+|   1084|
+|   1460|
+|    897|
+|     31|
++-------+
+
+For STORIES oddly I saw that they were not always in integers and it was possible to have a fraction of a story:
+spark.sql('SELECT STORIES, count(*) count from valdata GROUP BY STORIES ORDER BY STORIES ASC').show()
++-------+------+                                                                
+|STORIES| count|
++-------+------+
+|   null|508600|
+|    0.5|     5|
+|      1|853362|
+|    1.1|    27|
+|    1.2|   423|
+|    1.3|    34|
+|    1.4|    15|
+|    1.5|216817|
+|    1.6| 78664|
+|    1.7| 46233|
+|    1.8|   195|
+|    1.9|    87|
+|     10| 38026|
+|    100|    52|
+|    102|     2|
+|    104|     8|
+|     11| 45469|
+|    114|     9|
+|    119|     9|
+|     12|119208|
++-------+------+
+
+For FULLVAL I wanted to get an idea of ranges:
+spark.sql('SELECT distinct fullval from valdata ORDER BY fullval asc').show()
++-------+                                                                       
+|fullval|
++-------+
+|   null|
+|      0|
+|      1|
+|      2|
+|      3|
+|      4|
+|      5|
+|      6|
+|     10|
+|     11|
+|     12|
+|     14|
+|     15|
+|     18|
+|     20|
+|     22|
+|     23|
+|     24|
+|     27|
+|     28|
++-------+
+spark.sql('SELECT distinct fullval from valdata ORDER BY fullval desc').show()
++----------+                                                                    
+|   fullval|
++----------+
+|7786157000|
+|7559376000|
+|7339200000|
+|7125437000|
+|6917900000|
+|6569706000|
+|6211850000|
+|6150000000|
+|6089740000|
+|6043316000|
+|5897185000|
+|5831010537|
+|5748922340|
+|5643663000|
+|5581478000|
+|5462032452|
+|5392702000|
+|5327871000|
+|5292000000|
+|5282806429|
++----------+
+I got range counts using variations of this query spark.sql('select count(*) count from valdata where fullval between 0 and 10000').show():
+0-10k: 246,485
+10k-100k: 746,371
+100k-1M: 7,616,119
+1M-50M: 1,062,681
+50M-500M: 165,551
+500M-1B: 444
+>1B: 153
+
+For year I found i'd need to pick out a few values for "FINAL" and null and learned the date ranges for my data:
+spark.sql('select year, count(*) count from valdata group by year').show()
++-------+-------+                                                               
+|   year|  count|
++-------+-------+
+|2015/16|1096244|
+|2016/17|1103319|
+|2011/12|1080561|
+|  FINAL|     40|
+|   null|      5|
+|2013/14|1088344|
+|2012/13|1086389|
+|2014/15|1093323|
+|2017/18|1110054|
+|2010/11|1070989|
+|2018/19|1116589|
++-------+-------+
+
+From the zip i found some invalid values and thus decided to filter on length of 5
+spark.sql('select postcode,length(postcode) len, count(*) count from valdata group by postcode order by len DESC').show()
++--------------------+---+-----+                                                
+|            postcode|len|count|
++--------------------+---+-----+
+|361 MOUNTAINVIEW ...| 23|    4|
+|  2487 ARTHUR AVENUE| 18|    9|
+|    130-16 59 AVENUE| 16|    5|
+|     50-62 96 STREET| 15|    7|
+|     56-08 61 STREET| 15|    3|
+|     53-33 69 STREET| 15|    9|
+|       1 MAIN STREET| 13|    3|
+|               11109|  5| 1769|
+|               10012|  5|25453|
+|               11205|  5|50784|
+|               11001|  5|10939|
+|               10309|  5|87096|
+|               10110|  5|    2|
+|               11218|  5|73326|
+|               10169|  5|    2|
+|               11428|  5|38638|
+|               11237|  5|43356|
+|               10177|  5|    2|
+|               10803|  5|  367|
+|               11379|  5|82391|
++--------------------+---+-----+
