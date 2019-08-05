@@ -1,5 +1,4 @@
 import os
-import re
 import sys
 import datetime as dt
 from pyspark.sql import SparkSession
@@ -7,7 +6,6 @@ from pyspark.sql import SparkSession
 '''
 spark-submit 311_metrics_amr1059.py hdfs:/user/amr1059/load_05.parquet
 '''
-
 
 def generate_metrics(spark, input_file):
   print('{}| Reading file'.format(dt.datetime.now()))

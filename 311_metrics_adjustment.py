@@ -1,15 +1,14 @@
 import os
-import re
 import sys
 import datetime as dt
 from pyspark.sql import SparkSession
 '''
 spark-submit 311_metrics_adjustment.py hdfs:/user/amr1059/average_completion_time.parquet \
             hdfs:/user/amr1059/average_completion_time_by_incident.parquet hdfs:/user/amr1059/incidents_per_zip.parquet
-
 '''
 
 def adjust_and_transpose(spark, parquet_file1, parquet_file2, parquet_file3):
+  print('{} | Starting dataframe transpose'.format(dt.datetime.now()))
   table = spark.read.parquet(parquet_file1)
   table.createOrReplaceTempView('average_completion_time')
   table_transpose = spark.sql("""
@@ -25,7 +24,8 @@ def adjust_and_transpose(spark, parquet_file1, parquet_file2, parquet_file3):
            SUM(coalesce(CASE WHEN year = 2018 THEN avg_job_time END, 0)) AS 2018_job_time,
            SUM(coalesce(CASE WHEN year = 2019 THEN avg_job_time END, 0)) AS 2019_job_time 
     FROM average_completion_time
-    GROUP BY incident_zi
+    GROUP BY incident_zip
+    ORDER BY incident_zip
     """)
 
   table2 = spark.read.parquet(parquet_file2)
@@ -44,6 +44,7 @@ def adjust_and_transpose(spark, parquet_file1, parquet_file2, parquet_file3):
            SUM(coalesce(CASE WHEN year = 2019 THEN avg_job_time END, 0)) AS 2019_job_time 
     FROM average_completion_time_by_incident
     GROUP BY incident_zip, complaint_type
+    ORDER BY incident_zip
     """)
 
   table3 = spark.read.parquet(parquet_file3)
@@ -62,10 +63,14 @@ def adjust_and_transpose(spark, parquet_file1, parquet_file2, parquet_file3):
            SUM(coalesce(CASE WHEN year = 2019 THEN incident_count END, 0)) AS 2019_incident_count 
     FROM incidents_per_zip
     GROUP BY incident_zip, complaint_type
+    ORDER BY incident_zip
     """)
+  print('{}| Finished transpose'.format(dt.datetime.now()))
+  print('{}| Writing transposed dataframes to file'.format(dt.datetime.now()))
   table_transpose.write.csv('avg_comp_time_transpose')  
   table2_transpose.write.csv('avg_comp_time_incident_transpose')
   table3_transpose.write.csv('incidents_by_zip_transpose')
+  print('{}| Completed'.format(dt.datetime.now()))
 
 if __name__ == "__main__":
   spark = SparkSession.builder.appName("transpose_tables").getOrCreate()
