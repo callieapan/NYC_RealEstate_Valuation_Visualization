@@ -1,6 +1,6 @@
 # Using Data to Drive Decisions related to New York Real Estate 
 
-## Dataset #1
+## Dataset #1: Real Estate Valuation data
 Real Estate Valuation data from Open Data NYC, data has been downloaded from the web and uploaded to HDFS.
 Original dataset can be accessed at hdfs:/user/ctd299/Property_Valuation_and_Assessment_Data.csv
 
@@ -9,13 +9,47 @@ Original dataset can be accessed at hdfs:/user/ctd299/Property_Valuation_and_Ass
 1) Zip code average yearly valuation growth over entire time range hdfs:/user/ctd299/valuation_growth_byzip.csv
 2) Zip code average yearly valuation growth for each year in dataset hdfs:/user/ctd299/valuation_yearly_growth_byzip.csv
 
-## Dataset #2
-311 Service Requests 2010 to Present (sourced from Open Data NYC-- available at https://nycopendata.socrata.com/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9)
+## Dataset #2: 311 Service Requests 2010 to Present
+sourced from Open Data NYC. Available at https://nycopendata.socrata.com/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9
+The following alias commands were used.
 
+```
+alias mods='module load python/gnu/3.6.5 && module load spark/2.4.0'
+alias spark-submit='PYSPARK_PYTHON=$(which python) spark-submit'
+```
+When starting in the terminal, prior to submiting any spark jobs it is important to first run the `mods` command; it is only necessary to run once. This is done to load python and spark. 
+Corresponding python scripts:
+```
+file-loader-amr1059.py
+311_metrics_amr1059.py
+311_metrics_adjustment.py
+```
+### Ingesting data
+First, load the data to HDFS scratch folder 
+`scp -r ~/Downloads/311_Service_Requests_from_2010_to_Present.csv amr1059@dumbo.hpc.nyu.edu:/scratch/amr1059`
 
+### Loading and pre-processing data
+The following command loads the 311 file, converts columns to appropriate types, creates additional columns, and drops extraneous/unused columns. 
+`spark-submit BDAD-loader.py file:///scratch/amr1059/311_Service_Requests_from_2010_to_Present.csv 311_service_requests.parquet`
+For example, dates were originally parsed as strings. In order to accomplish any calculations date columns, `created_date`, such as needed to be converted to timestamps. Additionally, there was the creation of the `year` column, which is integer type and indicates the year the service request was placed. This was particularly crucial for any grouping and filtering. Lastly, `job_time` was a column created by subtracting `created_date` from `closed_date`. This computation alone returns number of seconds elapsed. To get the number of days elapsed between a service request being placed and when it is resolved, divide by the number of seconds in a day (86,400).
 
+### Generating metrics
+The following command takes the output parquet file from the pre-processing phase and calculates several metrics through sql queries. These dataframes are then written to parquet files. 
+`spark-submit 311_metrics_amr1059.py hdfs:/user/amr1059/311_service_requests.parquet`
 
-## Dataset #3
+- `incidents_per_zip.parquet` contains the five most occurring 311 service complaints for each zipcode, broken down by year
+- `average_completion_time.parquet` contains the average completion time for a 311 service request for each zipcode, broken down by year
+- `average_completion_time_by_incident` contains the average completion time for a specified 311 service request complaint, e.g. **_Indoor Sewage_** or **_Animal Abuse_**, for each zipcode, broken down by year
+
+### Transposing dataframes
+For the purposes of merging our three distinct data sets, the 311 service data needs to be transposed such that each zipcode appears once per row. Every additional column corresponds to a specific year and the associated metric. For example, `incidents_per_zip` transposed contains a `2011_incident_count` column for the tally of incidents recorded in a zipcode for 2011. The following command transposes the output parquet files from the previous step.
+`spark-submit 311_metrics_adjustment.py hdfs:/user/amr1059/average_completion_time.parquet hdfs:/user/amr1059/average_completion_time_by_incident.parquet hdfs:/user/amr1059/incidents_per_zip.parquet`
+
+- `avg_comp_time_transpose` is the transpose of `average_completion_time.parquet`
+- `avg_comp_time_incident_transpose` is the transpose of `average_completion_time_by_incident.parquet`
+- `incidents_by_zip_transpose` is the transpose of `incidents_per_zip.parquet`
+
+## Dataset #3: New Construction Permit Application Data
 New Construction Permit Application Data from Open Data NYC
 script files:
 readfile_CP.py
@@ -68,6 +102,9 @@ v) to calculate the metrics that will be used in the final visualization, run:
 the output files will be DOBsumcostbyzip_job_type.csv and dfDOBall.csv in your current directory 
 
 
-Merging all Files
-.....
+## Merging Files
+In order to properly visualize our data through Tableau, we needed to join three distinct data sets--valuation data, job construction data, and 311 service data. The following command can be used to merge the aforementioned files `spark-submit file-merger.py hdfs:/user ctd299/valuation_growth_byzip.csv hdfs:/user/amr1059/dfDOBall.csv hdfs:/user/amr1059/avg_comp_time_transpose.csv`
+What `file-merger.py` does is execute left joins to the valuation data as it contains the zipcodes for which we have property value growth measures for.
+
+
 
