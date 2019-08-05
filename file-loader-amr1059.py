@@ -83,8 +83,6 @@ def csv_to_parquet(spark, input_file, output_file):
   print('{} | Finished job in {}'.format(dt.datetime.now(), dt.datetime.now() - start_time))
 
 
-
-
 if __name__ == "__main__":
   spark = SparkSession.builder.appName("load_file_to_parquet").master("local").getOrCreate()
   input_csv = sys.argv[1]
