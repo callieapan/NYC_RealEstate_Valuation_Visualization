@@ -103,7 +103,7 @@ the output files will be DOBsumcostbyzip_job_type.csv and dfDOBall.csv in your c
 
 
 ## Merging Files
-In order to properly visualize our data through Tableau, we needed to join three distinct data sets--valuation data, job construction data, and 311 service data. The following command can be used to merge the aforementioned files `spark-submit file-merger.py hdfs:/user ctd299/valuation_growth_byzip.csv hdfs:/user/amr1059/dfDOBall.csv hdfs:/user/amr1059/avg_comp_time_transpose.csv`
+In order to properly visualize our data through Tableau, we needed to join three distinct data sets--valuation data, job construction data, and 311 service data. The following command can be used to merge the aforementioned files `spark-submit file-merger.py hdfs:/user/ctd299/valuation_growth_byzip.csv hdfs:/user/ctd299/valuation_yearly_growth_byzip.csv hdfs:/user/amr1059/dfDOBall.csv hdfs:/user/amr1059/avg_comp_time_transpose.csv`
 What `file-merger.py` does is execute left joins to the valuation data as it contains the zipcodes for which we have property value growth measures for.
 
 
