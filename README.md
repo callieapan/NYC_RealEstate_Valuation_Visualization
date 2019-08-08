@@ -6,19 +6,23 @@
     │   └── 311_metrics_adjustment.py
     │   └── 311_metrics_amr1059.py
     │   └── metricCalc_CP.py
-    │   └── valuation_analytic.py - calculates year over year valuation growth data by zip, calculates categorizations, and       |       saves final data files for merging step
+    │   └── valuation_analytic.py - calculates year over year valuation growth data by zip, calculates categorizations, and saves final data files for merging step
     ├── data_ingest
-    │   └── 311_data_ingest_command.txt
-    │   └── ingestcode.txt
+    │   └── 311_data_ingest_command.txt - commands used for 311 data ingest
+    │   └── ingestcode.txt - commands used for DOB permit data ingest
+    │   └── valuation_data_ingest.txt - commands used for valuation data ingest
     ├── etl_code
     │   └── 311-file-loader.py
     │   └── cleanfile_CP.py
     │   └── dfcoordsmR.csv
     │   └── mapCoordtoZip.ipynb
     │   └── mergzip_CP.py
+    │   └── valuation_cleaning.py - contains code for cleaning valuation data
     ├── profiling_code
     │   └── 311_profiling_commands.txt
     │   └── readfile_CP.py
+    │   └── Valuation_Profiling_codeonly.py - contains python commands used to clean data
+    │   └── Valuation_Profiling_txtversion.txt - contains commands used to clean the data that are in Valuation_Profiling_codeonly.py file as well as the resulting data outputs
     ├── screenshots
         └── 311_ETL.png
         └── 311_metrics_calculation.png
