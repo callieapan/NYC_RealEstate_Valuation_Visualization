@@ -21,8 +21,8 @@
     ├── profiling_code
     │   └── 311_profiling_commands.txt
     │   └── readfile_CP.py
-    │   └── Valuation_Profiling_codeonly.py - contains python commands used to clean data
-    │   └── Valuation_Profiling_txtversion.txt - contains commands used to clean the data that are in Valuation_Profiling_codeonly.py file as well as the resulting data outputs
+    │   └── Valuation_Profiling_codeonly.py
+    │   └── Valuation_Profiling_txtversion.txt
     ├── screenshots
         └── 311_ETL.png
         └── 311_metrics_calculation.png
@@ -47,12 +47,18 @@
 * /etl_code
     * `311-file-loader.py`: python script that read in 311 service data, converts strings to appropriate types, and drops unused columns and rows
     * `valuation_cleaning.py`: python script that reads in, cleans, and saves cleaned valuation data
+* /profiling_code
     * `311_profiling_commands.txt`: contains various SparkSQL commands used for profiling data, i.e. seeing distribution of values and consistency of data
+    * `Valuation_Profiling_codeonly.py`: contains python commands used to clean data
+    * `Valuation_Profiling_txtversion.txt`: contains commands used to clean the data that are in Valuation_Profiling_codeonly.py file as well as the resulting data outputs
 * /screenshots
     * `311_ETL.png`: displays ETL of 311 service data successfully running
     * `311_metrics_calculation.png`: displays initial 311 service metrics calculation through SparkSQL successfully running
     * `311_metrics_df_transpose.png`: displays transpose and dimension reduction of above 311 metrics successfully running
     * `file_merge.png`: displays successful merging of real estate valuation, DOB job, and 311 service requests data
+    * `valuation_profiling.png`:
+    * `valuation_cleaning.png`:
+    * `valuation_profiling.png`:
 
 
 ## Dataset #1: Real Estate Valuation data
