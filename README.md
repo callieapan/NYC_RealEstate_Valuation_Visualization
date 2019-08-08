@@ -1,4 +1,32 @@
 # Using Data to Drive Decisions related to New York Real Estate 
+## Repo directory structure
+
+    ├── README.md 
+    ├── app_code
+    │   └── 311_metrics_adjustment.py
+    │   └── 311_metrics_amr1059.py
+    │   └── metricCalc_CP.py
+    ├── data_ingest
+    │   └── 311_data_ingest_command.txt
+    │   └── ingestcode.txt
+    ├── etl_code
+    │   └── cleanfile_CP.py
+    │   └── dfcoordsmR.csv
+    │   └── file-loader-amr1059.py
+    │   └── mapCoordtoZip.ipynb
+    │   └── mergzip_CP.py
+    ├── profiling_code
+    │   └── 311_profiling_commands.txt
+    │   └── readfile_CP.py
+    ├── screenshots
+        └── 311_ETL.png
+        └── 311_metrics_calculation.png
+        └── 311_metrics_df_transpose.png
+        └── file_merge.png
+        └── Screenshoot _cleanfile_CP.docx
+        └── Screenshoot _mergzip_CP.docx
+        └── Screenshoot _metricCalc_CP.docx
+        └── Screenshoot _readfile_CP.docx
 
 ## Dataset #1: Real Estate Valuation data
 Real Estate Valuation data from Open Data NYC, data has been downloaded from the web and uploaded to HDFS.
