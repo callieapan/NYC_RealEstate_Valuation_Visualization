@@ -28,6 +28,23 @@
         └── Screenshoot _metricCalc_CP.docx
         └── Screenshoot _readfile_CP.docx
 
+## Repo directory & files explained
+* /app_code
+    * `311_metrics_amr1059.py`: python script that reads 311 parquet, runs queries for metrics using SparkSQL
+    * `311_metrics_adjustment.py`: python script that transposes, aggregates, and reduces dimensions from above metrics through SparkSQL
+* /data_ingest
+    * `311_data_ingest_command.txt`: terminal command for ingesting 311 service request data to `/scratch/amr1059`
+* /etl_code
+    * `311-file-loader.py`: python script that read in 311 service data, converts strings to appropriate types, and drops unused columns and rows
+* /profiling_code
+    * `311_profiling_commands.txt`: contains various SparkSQL commands used for profiling data, i.e. seeing distribution of values and consistency of data
+* /screenshots
+    * `311_ETL.png`: displays ETL of 311 service data successfully running
+    * `311_metrics_calculation.png`: displays initial 311 service metrics calculation through SparkSQL successfully running
+    * `311_metrics_df_transpose.png`: displays transpose and dimension reduction of above 311 metrics successfully running
+    * `file_merge.png`: displays successful merging of real estate valuation, DOB job, and 311 service requests data
+
+
 ## Dataset #1: Real Estate Valuation data
 Real Estate Valuation data from Open Data NYC, data has been downloaded from the web and uploaded to HDFS.
 Original dataset can be accessed at hdfs:/user/ctd299/Property_Valuation_and_Assessment_Data.csv
