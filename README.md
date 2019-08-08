@@ -56,19 +56,21 @@
     * `311_metrics_calculation.png`: displays initial 311 service metrics calculation through SparkSQL successfully running
     * `311_metrics_df_transpose.png`: displays transpose and dimension reduction of above 311 metrics successfully running
     * `file_merge.png`: displays successful merging of real estate valuation, DOB job, and 311 service requests data
-    * `valuation_profiling.png`:
-    * `valuation_cleaning.png`:
-    * `valuation_profiling.png`:
+    * `valuation_profiling.png`: sample screenshot for valuation profiling
+    * `valuation_cleaning.png`: screenshot of full valuation cleaning code
+    * `valuation_analytic.png`: sample screenshot for valuation analytic code
 
 
 ## Dataset #1: Real Estate Valuation data
 Real Estate Valuation data from Open Data NYC, data has been downloaded from the web and uploaded to HDFS.
 Original dataset can be accessed at hdfs:/user/ctd299/Property_Valuation_and_Assessment_Data.csv
 
-"Valuation_Cleaning.txt" contains commands to launch REPL, clean the data and save to a new file at hdfs:/user/ctd299/cleaned_data_2.csv
-"Valuation Processing.txt" contains commands to launch REPL, calculate year over year valuation growth and categorizations, and save 2 files:
+"valuation_cleaning.py" cleans the data and saves to a new file at hdfs:/user/ctd299/cleaned_data_2.csv
+"valuation_analytic.py" calculates year over year valuation growth and categorizations, and saves 2 files:
 1) Zip code average yearly valuation growth over entire time range hdfs:/user/ctd299/valuation_growth_byzip.csv
 2) Zip code average yearly valuation growth for each year in dataset hdfs:/user/ctd299/valuation_yearly_growth_byzip.csv
+
+These are the final files used to merge with datasets #2 and #3.
 
 ## Dataset #2: 311 Service Requests 2010 to Present
 sourced from Open Data NYC. Available at https://nycopendata.socrata.com/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9
