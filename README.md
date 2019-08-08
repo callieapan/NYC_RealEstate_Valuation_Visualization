@@ -9,7 +9,7 @@
     │   └── valuation_analytic.py 
     ├── data_ingest
     │   └── 311_data_ingest_command.txt
-    │   └── ingestcode.txt
+    │   └── DOB_ingestcode.txt
     │   └── valuation_data_ingest.txt
     ├── etl_code
     │   └── 311-file-loader.py
@@ -40,11 +40,17 @@
 * /app_code
     * `311_metrics_amr1059.py`: python script that reads 311 parquet, runs queries for metrics using SparkSQL
     * `311_metrics_adjustment.py`: python script that transposes, aggregates, and reduces dimensions from above metrics through SparkSQL
+    * `metricCalc_CP.py`: calculates summary DOB permit data
     * `valuation_analytic.py`: calculates year over year valuation growth data by zip, calculates categorizations, and saves final data files for merging step
 * /data_ingest
     * `311_data_ingest_command.txt`: terminal command for ingesting 311 service request data to `/scratch/amr1059`
+    * `DOB_ingestcode.txt`: terminal commands for ingesting DOB permit data
     * `valuation_data_ingest.txt`: terminal commands for ingesting valuation data
 * /etl_code
+    * `cleanfile_CP.py`: code to clean the DOB permit data
+    * `dfcoordsmR.csv`: data for lat/long to zip mapping
+    * `mapCoordtoZip.ipynb`: code to map lat/long to zip code
+    * `mergzip_CP.py`: code to add zip code to DOB permit data
     * `311-file-loader.py`: python script that read in 311 service data, converts strings to appropriate types, and drops unused columns and rows
     * `valuation_cleaning.py`: python script that reads in, cleans, and saves cleaned valuation data
 * /profiling_code
