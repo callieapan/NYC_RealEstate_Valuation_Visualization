@@ -6,7 +6,7 @@
     │   └── 311_metrics_adjustment.py
     │   └── 311_metrics_amr1059.py
     │   └── metricCalc_CP.py
-    │   └── valuation_analytic.py - calculates year over year valuation growth data by zip, calculates categorizations, and saves final data files for merging step
+    │   └── valuation_analytic.py 
     ├── data_ingest
     │   └── 311_data_ingest_command.txt - commands used for 311 data ingest
     │   └── ingestcode.txt - commands used for DOB permit data ingest
@@ -32,11 +32,15 @@
         └── Screenshoot _mergzip_CP.docx
         └── Screenshoot _metricCalc_CP.docx
         └── Screenshoot _readfile_CP.docx
+        └── valuation_analytic.png
+        └── valuation_cleaning.png
+        └── valuation_profiling.png
 
 ## Repo directory & files explained
 * /app_code
     * `311_metrics_amr1059.py`: python script that reads 311 parquet, runs queries for metrics using SparkSQL
     * `311_metrics_adjustment.py`: python script that transposes, aggregates, and reduces dimensions from above metrics through SparkSQL
+    * `valuation_analytic.py`: calculates year over year valuation growth data by zip, calculates categorizations, and saves final data files for merging step
 * /data_ingest
     * `311_data_ingest_command.txt`: terminal command for ingesting 311 service request data to `/scratch/amr1059`
 * /etl_code
