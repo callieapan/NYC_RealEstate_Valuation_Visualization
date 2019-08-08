@@ -33,6 +33,8 @@ The following command loads the 311 file, converts columns to appropriate types,
 `spark-submit BDAD-loader.py file:///scratch/amr1059/311_Service_Requests_from_2010_to_Present.csv 311_service_requests.parquet`
 For example, dates were originally parsed as strings. In order to accomplish any calculations date columns, `created_date`, such as needed to be converted to timestamps. Additionally, there was the creation of the `year` column, which is integer type and indicates the year the service request was placed. This was particularly crucial for any grouping and filtering. Lastly, `job_time` was a column created by subtracting `created_date` from `closed_date`. This computation alone returns number of seconds elapsed. To get the number of days elapsed between a service request being placed and when it is resolved, divide by the number of seconds in a day (86,400).
 
+Output file is saved to `hdfs:/user/amr1059/`
+
 ### Generating metrics
 The following command takes the output parquet file from the pre-processing phase and calculates several metrics through sql queries. These dataframes are then written to parquet files. 
 `spark-submit 311_metrics_amr1059.py hdfs:/user/amr1059/311_service_requests.parquet`
@@ -41,6 +43,8 @@ The following command takes the output parquet file from the pre-processing phas
 - `average_completion_time.parquet` contains the average completion time for a 311 service request for each zipcode, broken down by year
 - `average_completion_time_by_incident` contains the average completion time for a specified 311 service request complaint, e.g. **_Indoor Sewage_** or **_Animal Abuse_**, for each zipcode, broken down by year
 
+Output files are saved to `hdfs:/user/amr1059/`
+
 ### Transposing dataframes
 For the purposes of merging our three distinct data sets, the 311 service data needs to be transposed such that each zipcode appears once per row. Every additional column corresponds to a specific year and the associated metric. For example, `incidents_per_zip` transposed contains a `2011_incident_count` column for the tally of incidents recorded in a zipcode for 2011. The following command transposes the output parquet files from the previous step.
 `spark-submit 311_metrics_adjustment.py hdfs:/user/amr1059/average_completion_time.parquet hdfs:/user/amr1059/average_completion_time_by_incident.parquet hdfs:/user/amr1059/incidents_per_zip.parquet`
@@ -48,6 +52,8 @@ For the purposes of merging our three distinct data sets, the 311 service data n
 - `avg_comp_time_transpose` is the transpose of `average_completion_time.parquet`
 - `avg_comp_time_incident_transpose` is the transpose of `average_completion_time_by_incident.parquet`
 - `incidents_by_zip_transpose` is the transpose of `incidents_per_zip.parquet`
+
+Output files are saved to `hdfs:/user/amr1059/`
 
 ## Dataset #3: New Construction Permit Application Data
 New Construction Permit Application Data from Open Data NYC
@@ -58,7 +64,7 @@ script files:
 - `metricCalc_CP.py
 
 additional csv files for input:
-- `dfcoordsmR.csv
+- `dfcoordsmR.csv`
 
 output file:
 - `DOBsumcostbyzip_job_type.csv
