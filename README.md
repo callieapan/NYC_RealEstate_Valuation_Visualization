@@ -67,37 +67,37 @@ dfDOBall.csv
 i) The data has already been downloaded from https://data.cityofnewyork.us/api/views/ic3t-wcy2/rows.csv?accessType=DOWNLOAD to hdfs directory "hdfs:/user/cp2530/DOB_raw" the file format is csv
 
 ii) To read the data, run:
-> module load python/gnu/3.6.5
-> module load spark/2.4.0
-> alias spark-submit='PYSPARK_PYTHON=$(which python) spark-submit'
-> spark-submit readfile_CP.py
+'module load python/gnu/3.6.5
+'module load spark/2.4.0
+'alias spark-submit='PYSPARK_PYTHON=$(which python) spark-submit'
+'spark-submit readfile_CP.py
 
 these commands will read in the file and save it into this directory 'hdfs:/user/cp2530/DOBraw.parquet'
 
 
 iii) to clean the data, run:
-> module load python/gnu/3.6.5
-> module load spark/2.4.0
-> alias spark-submit='PYSPARK_PYTHON=$(which python) spark-submit'
-> spark-submit cleanfile_CP.py 
+'module load python/gnu/3.6.5
+'module load spark/2.4.0
+'alias spark-submit='PYSPARK_PYTHON=$(which python) spark-submit'
+'spark-submit cleanfile_CP.py 
 
 the clearnfile_CP.py script will read in the hdfs:/user/cp2530/DOBraw.parquet, truncate the data to the desired date range, create the job description keywords field
 
 
-iv) to add the zipcode columns to the dataset, make sure dfcoordsmR.csv is in your current directory, run: 
-> module load python/gnu/3.6.5
-> module load spark/2.4.0
-> alias spark-submit='PYSPARK_PYTHON=$(which python) spark-submit'
-> spark-submit mergzip_CP.py
+iv) to add the zipcode columns to the dataset, the dfcoordsmR.csv already saved in directory 'hdfs:/user/cp2530/dfcoordsmR.csv' where the mergzip_CP.py will access the file, run: 
+'module load python/gnu/3.6.5
+'module load spark/2.4.0
+'alias spark-submit='PYSPARK_PYTHON=$(which python) spark-submit'
+'spark-submit mergzip_CP.py
 
 this step will write its output to this directory "hdfs:/user/cp2530/DOBcleanzip.parquet"
 
 v) to calculate the metrics that will be used in the final visualization, run:
-> module load python/gnu/3.6.5
-> module load spark/2.4.0
-> alias spark-submit='PYSPARK_PYTHON=$(which python) spark-submit'
-> spark-submit metricCalc_CP.py
-> hdfs dfs -getmerge hdfs:/user/cp2530/sumcostbyzip_job_type DOBsumcostbyzip_job_type.csv
+'module load python/gnu/3.6.5
+'module load spark/2.4.0
+'alias spark-submit='PYSPARK_PYTHON=$(which python) spark-submit'
+'spark-submit metricCalc_CP.py
+'hdfs dfs -getmerge hdfs:/user/cp2530/sumcostbyzip_job_type DOBsumcostbyzip_job_type.csv
 
 the output files will be DOBsumcostbyzip_job_type.csv and dfDOBall.csv in your current directory 
 
