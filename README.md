@@ -8,16 +8,16 @@
     │   └── metricCalc_CP.py
     │   └── valuation_analytic.py 
     ├── data_ingest
-    │   └── 311_data_ingest_command.txt - commands used for 311 data ingest
-    │   └── ingestcode.txt - commands used for DOB permit data ingest
-    │   └── valuation_data_ingest.txt - commands used for valuation data ingest
+    │   └── 311_data_ingest_command.txt
+    │   └── ingestcode.txt
+    │   └── valuation_data_ingest.txt
     ├── etl_code
     │   └── 311-file-loader.py
     │   └── cleanfile_CP.py
     │   └── dfcoordsmR.csv
     │   └── mapCoordtoZip.ipynb
     │   └── mergzip_CP.py
-    │   └── valuation_cleaning.py - contains code for cleaning valuation data
+    │   └── valuation_cleaning.py
     ├── profiling_code
     │   └── 311_profiling_commands.txt
     │   └── readfile_CP.py
@@ -43,9 +43,10 @@
     * `valuation_analytic.py`: calculates year over year valuation growth data by zip, calculates categorizations, and saves final data files for merging step
 * /data_ingest
     * `311_data_ingest_command.txt`: terminal command for ingesting 311 service request data to `/scratch/amr1059`
+    * `valuation_data_ingest.txt`: terminal commands for ingesting valuation data
 * /etl_code
     * `311-file-loader.py`: python script that read in 311 service data, converts strings to appropriate types, and drops unused columns and rows
-* /profiling_code
+    * `valuation_cleaning.py`: python script that reads in, cleans, and saves cleaned valuation data
     * `311_profiling_commands.txt`: contains various SparkSQL commands used for profiling data, i.e. seeing distribution of values and consistency of data
 * /screenshots
     * `311_ETL.png`: displays ETL of 311 service data successfully running
