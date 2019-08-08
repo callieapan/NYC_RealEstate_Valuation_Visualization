@@ -85,11 +85,12 @@ the clearnfile_CP.py script will read in the hdfs:/user/cp2530/DOBraw.parquet, t
 
 
 iv) to add the zipcode columns to the dataset, the dfcoordsmR.csv already saved in directory 'hdfs:/user/cp2530/dfcoordsmR.csv' where the mergzip_CP.py will access the file, run: 
-'module load python/gnu/3.6.5
-'module load spark/2.4.0
-'alias spark-submit='PYSPARK_PYTHON=$(which python) spark-submit'
-'spark-submit mergzip_CP.py
-
+'''
+module load python/gnu/3.6.5
+module load spark/2.4.0
+alias spark-submit='PYSPARK_PYTHON=$(which python) spark-submit'
+spark-submit mergzip_CP.py
+'''
 this step will write its output to this directory "hdfs:/user/cp2530/DOBcleanzip.parquet"
 
 v) to calculate the metrics that will be used in the final visualization, run:
