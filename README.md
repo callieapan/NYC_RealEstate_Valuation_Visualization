@@ -6,6 +6,7 @@
     │   └── 311_metrics_adjustment.py
     │   └── 311_metrics_amr1059.py
     │   └── metricCalc_CP.py
+    │   └── valuation_analytic.py - calculates year over year valuation growth data by zip, calculates categorizations, and       |       saves final data files for merging step
     ├── data_ingest
     │   └── 311_data_ingest_command.txt
     │   └── ingestcode.txt
