@@ -28,10 +28,10 @@
         └── 311_metrics_calculation.png
         └── 311_metrics_df_transpose.png
         └── file_merge.png
-        └── Screenshoot _cleanfile_CP.docx
-        └── Screenshoot _mergzip_CP.docx
-        └── Screenshoot _metricCalc_CP.docx
-        └── Screenshoot _readfile_CP.docx
+        └── Screenshoot_cleanfile_CP.docx
+        └── Screenshoot_mergzip_CP.docx
+        └── Screenshoot_metricCalc_CP.docx
+        └── Screenshoot_readfile_CP.docx
         └── valuation_analytic.png
         └── valuation_cleaning.png
         └── valuation_profiling.png
@@ -55,13 +55,19 @@
     * `valuation_cleaning.py`: python script that reads in, cleans, and saves cleaned valuation data
 * /profiling_code
     * `311_profiling_commands.txt`: contains various SparkSQL commands used for profiling data, i.e. seeing distribution of values and consistency of data
-    * `Valuation_Profiling_codeonly.py`: contains python commands used to clean data
-    * `Valuation_Profiling_txtversion.txt`: contains commands used to clean the data that are in Valuation_Profiling_codeonly.py file as well as the resulting data outputs
+    * `readfile_CP.py`: contains code used to profile DOB permit data
+    * `Valuation_Profiling_codeonly.py`: contains python commands used to clean valuation data
+    * `Valuation_Profiling_txtversion.txt`: contains commands used to clean valuation data that are in Valuation_Profiling_codeonly.py file as well as the resulting data outputs
 * /screenshots
     * `311_ETL.png`: displays ETL of 311 service data successfully running
     * `311_metrics_calculation.png`: displays initial 311 service metrics calculation through SparkSQL successfully running
     * `311_metrics_df_transpose.png`: displays transpose and dimension reduction of above 311 metrics successfully running
     * `file_merge.png`: displays successful merging of real estate valuation, DOB job, and 311 service requests data
+    * `mapCoordtoZip_screenshot.pdf`: displays successful screenshot for mapping lat/long coordinates to zip code for DOB permit data
+    * `Screenshoot _cleanfile_CP.pdf`: displays successful screenshot for cleaning DOB permit data
+    * `Screenshoot _mergzip_CP.pdf`: displays successful screenshot for adding zip code to DOB permit data
+    * `Screenshoot _metricCalc_CP.pdf`: displays successful screenshot for DOB permit analytic code
+    * `Screenshoot _readfile_CP.pdf`: displays successful screenshot for DOB permit profiling code
     * `valuation_profiling.png`: sample screenshot for valuation profiling
     * `valuation_cleaning.png`: screenshot of full valuation cleaning code
     * `valuation_analytic.png`: sample screenshot for valuation analytic code
